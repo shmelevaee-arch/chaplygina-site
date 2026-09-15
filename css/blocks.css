@@ -254,3 +254,18 @@ button.course__media:hover { filter: brightness(1.12); }
   .footer { padding-bottom: 96px; } /* место под нижнюю плашку */
 }
 @media (min-width: 769px) { .menu { display: none; } }
+
+/* ===== Примерные фото со стока (Unsplash, бесплатная лицензия) – заменить кадрами фотосессии ===== */
+.hero__photo {
+  background: url("../assets/img/hero-tanya.jpg") 60% 30% / cover no-repeat;
+}
+.hero__photo .hero__photo-note,
+.about__photo .ph__note,
+.final__bg .ph__note { display: none; }
+.about__photo { background: url("../assets/img/stock/about-suit.jpg") center 25% / cover no-repeat; }
+.final__bg { overflow: hidden; background: #2a0a10; }
+.final__bg::before {
+  content: ""; position: absolute; inset: -20px;
+  background: url("../assets/img/stock/final-profile.jpg") center 30% / cover no-repeat;
+  filter: blur(6px) saturate(1.15); /* мягкое размытие вместо смазанного в движении кадра */
+}
