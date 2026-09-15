@@ -127,3 +127,22 @@
     x0 = null;
   });
 })();
+
+// ----- Мобильное меню -----
+(() => {
+  const burger = document.querySelector('.header__burger');
+  const menu = document.getElementById('menu');
+  if (!burger || !menu) return;
+  const html = document.documentElement;
+  const set = (open) => {
+    html.classList.toggle('menu-open', open);
+    burger.setAttribute('aria-expanded', open);
+    burger.setAttribute('aria-label', open ? 'Закрыть меню' : 'Открыть меню');
+    menu.setAttribute('aria-hidden', !open);
+    open ? window.site?.lenis?.stop() : window.site?.lenis?.start();
+  };
+  burger.setAttribute('aria-controls', 'menu');
+  burger.addEventListener('click', () => set(!html.classList.contains('menu-open')));
+  menu.addEventListener('click', (e) => { if (e.target.closest('a')) set(false); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') set(false); });
+})();
