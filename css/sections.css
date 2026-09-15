@@ -9,10 +9,12 @@
   margin-bottom: clamp(40px, 5vw, 64px);
 }
 .section__title { font-size: var(--fs-h2); font-weight: 500; line-height: 1; letter-spacing: var(--track-tight); }
+/* заголовок карточки, шага, принципа – один размер на весь сайт, как 24/24 у референса */
+.card-title, .about__principles h3, .steps__list h3, .steps__aside h3, .price__title, .course__title { font-size: 24px; font-weight: 600; line-height: 1; letter-spacing: -0.03em; }
 .section__num { font-size: 20px; font-weight: 500; font-variant-numeric: tabular-nums; color: var(--c-text-muted); }
 .section__lead { max-width: 30ch; font-size: var(--fs-lead); font-weight: 500; line-height: 1.12; }
 
-.eyebrow { font-size: 14px; font-weight: 600; letter-spacing: 0.02em; text-transform: uppercase; color: var(--c-text-muted); }
+.eyebrow { font-size: 16px; font-weight: 500; line-height: 1; letter-spacing: -0.03em; text-transform: uppercase; color: var(--c-text-muted); }
 .muted { color: var(--c-text-muted); }
 
 /* ссылка со стрелкой */

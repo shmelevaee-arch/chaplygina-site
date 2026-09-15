@@ -18,8 +18,6 @@
       t.classList.toggle('is-active', on);
       t.setAttribute('aria-selected', on);
       t.tabIndex = on ? 0 : -1;
-      // перезапуск полоски прогресса
-      const bar = t.querySelector('.dirs__bar'); bar.style.animation = 'none'; bar.offsetWidth; bar.style.animation = '';
     });
     panels.forEach((p, n) => { p.hidden = n !== i; p.querySelectorAll('li').forEach((li, k) => li.style.setProperty('--i', k)); });
     layers.forEach((l, n) => l.classList.toggle('is-active', n === i));
@@ -77,7 +75,7 @@
   btn.addEventListener('click', () => {
     const open = list.classList.toggle('is-open');
     btn.setAttribute('aria-expanded', open);
-    btn.textContent = open ? 'Свернуть' : `Показать все ${total}`;
+    btn.textContent = open ? 'Свернуть список' : `Все документы – ${total}`;
   });
 })();
 
