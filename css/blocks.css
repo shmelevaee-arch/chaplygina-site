@@ -271,6 +271,6 @@ button.course__media:hover { filter: brightness(1.12); }
 .final__bg { overflow: hidden; background: #2a0a10; }
 .final__bg::before {
   content: ""; position: absolute; inset: -20px;
-  background: url("../assets/img/stock/final-profile.jpg") center 30% / cover no-repeat;
-  filter: blur(6px) saturate(1.15); /* мягкое размытие вместо смазанного в движении кадра */
+  background: url("../assets/img/stock/final-kiss.jpg") center / cover no-repeat;
+  filter: saturate(1.1); /* кадр уже смазан в движении, как финальный экран референса */
 }
