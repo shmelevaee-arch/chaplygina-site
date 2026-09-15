@@ -288,3 +288,5 @@ button.course__media:hover { filter: brightness(1.12); }
 .final__social a, .menu__social a { color: var(--c-text-muted); transition: color 0.3s var(--ease-out); }
 .final__social a:hover, .menu__social a:hover { color: var(--c-text); }
 .menu__social { justify-content: flex-start; margin-top: 40px; font-size: 16px; }
+
+.footer__legal { margin-top: 12px; font-size: 12px; line-height: 1.3; color: var(--c-text-muted); letter-spacing: -0.01em; }
