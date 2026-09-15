@@ -9,10 +9,10 @@
 .dirs__layer .ph__note { z-index: 1; left: auto; right: var(--pad-x); bottom: 24px; }
 
 .dirs__inner {
-  width: 100%; padding: calc(var(--header-h) + 32px) var(--pad-x) 48px;
+  width: 100%; padding: calc(var(--header-h) + 32px) var(--gutter) 48px;
   display: flex; flex-direction: column; align-items: center; text-align: center;
 }
-.dirs__head { align-self: stretch; display: flex; justify-content: space-between; padding-bottom: 20px; border-bottom: 1px solid var(--c-line); }
+.dirs__head { align-self: stretch; display: flex; justify-content: space-between; }
 
 .dirs__tabs { margin-top: auto; display: flex; flex-direction: column; align-items: center; gap: 4px; }
 .dirs__tab {
@@ -58,9 +58,9 @@
 
 /* ===== 04 Образование: счётчики + список документов ===== */
 .edu__stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(20px, 2.5vw, 40px); }
-.stat__num { display: block; font-size: clamp(48px, 6.6vw, 104px); white-space: nowrap; font-weight: 600; line-height: 0.9; letter-spacing: -0.06em; font-variant-numeric: tabular-nums; }
-.stat__label { display: block; margin: 14px 0 8px; font-size: 14px; font-weight: 600; letter-spacing: 0.02em; text-transform: uppercase; }
-.stat p { font-size: 16px; max-width: 28ch; }
+.stat__num { display: block; font-size: clamp(48px, 7vw, 104px); white-space: nowrap; letter-spacing: -0.07em; font-weight: 600; line-height: 0.9; letter-spacing: -0.06em; font-variant-numeric: tabular-nums; }
+.stat__label { display: block; margin: 20px 0 6px; font-size: clamp(16px, 1.4vw, 20px); font-weight: 600; line-height: 1; letter-spacing: -0.03em; text-transform: uppercase; }
+.stat p { font-size: 16px; line-height: 1; letter-spacing: -0.03em; max-width: 26ch; }
 
 .docs { list-style: none; margin-top: clamp(64px, 8vw, 120px); border-top: 1px solid var(--c-line); }
 .docs__row {
@@ -124,15 +124,15 @@
 
 /* ===== 06 Как проходит консультация ===== */
 .steps__grid { display: grid; grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); gap: clamp(32px, 5vw, 80px); align-items: start; }
-.steps__list { list-style: none; border-top: 1px solid var(--c-line); }
-.steps__list li { display: grid; grid-template-columns: clamp(64px, 8vw, 120px) 1fr; gap: 20px; padding: clamp(24px, 3vw, 36px) 0; border-bottom: 1px solid var(--c-line); }
+.steps__list { list-style: none; }
+.steps__list li { display: grid; grid-template-columns: clamp(64px, 8vw, 120px) 1fr; gap: 20px; padding: clamp(20px, 2.4vw, 32px) 0; }
 .steps__n { font-size: clamp(36px, 4vw, 64px); font-weight: 600; line-height: 0.9; letter-spacing: -0.05em; color: var(--c-red); }
 .steps__list h3 { font-size: clamp(24px, 2.2vw, 34px); font-weight: 600; line-height: 1; margin-bottom: 10px; }
 .steps__list p { color: var(--c-text-muted); max-width: 46ch; }
 .steps__aside { position: sticky; top: calc(var(--header-h) + 24px); padding: clamp(24px, 2.5vw, 36px); border-radius: 6px; background: #1b1b1b; }
 .steps__aside h3 { font-size: 22px; font-weight: 600; line-height: 1.1; margin-bottom: 18px; }
 .steps__aside ul { list-style: none; margin-bottom: 20px; }
-.steps__aside li { padding: 10px 0 10px 28px; border-top: 1px solid var(--c-line); position: relative; }
+.steps__aside li { padding: 6px 0 6px 28px; position: relative; }
 .steps__aside li::before { content: "×"; position: absolute; left: 0; color: var(--c-red); font-weight: 700; }
 .steps__aside p { font-size: 15px; }
 
@@ -163,8 +163,8 @@ button.course__media:hover { filter: brightness(1.12); }
 .course__title { margin: 8px 0 10px; font-size: clamp(24px, 2.2vw, 32px); font-weight: 600; line-height: 1; }
 .course__foot { margin-top: 18px; display: flex; justify-content: space-between; align-items: center; }
 .course__price { font-weight: 600; }
-.modal__list { list-style: none; margin: 16px 0 20px; border-top: 1px solid var(--c-line); }
-.modal__list li { padding: 12px 0; border-bottom: 1px solid var(--c-line); }
+.modal__list { list-style: none; margin: 16px 0 20px; }
+.modal__list li { padding: 6px 0; }
 .modal .btn { margin-top: 20px; }
 
 /* ===== 09 Гайд ===== */
@@ -210,12 +210,14 @@ button.course__media:hover { filter: brightness(1.12); }
 .final__bg::after { content: ""; position: absolute; inset: 0; background: radial-gradient(60% 60% at 50% 50%, rgba(0,0,0,0.1), rgba(0,0,0,0.55)); }
 .final__bg .ph__note { z-index: 1; left: auto; right: var(--pad-x); bottom: 20px; }
 .final__inner { padding: 64px var(--pad-x); max-width: 980px; }
-.final__title { font-size: clamp(28px, 8.4vw, 76px); font-weight: 700; line-height: 0.95; letter-spacing: -0.04em; text-transform: uppercase; }
+.final__title { font-size: clamp(26px, 2.6vw, 40px); font-weight: 600; line-height: 1; letter-spacing: -0.03em; text-transform: uppercase; }
+.final__link { margin-top: 28px; font-size: clamp(18px, 1.4vw, 22px); }
+.final__hint { margin-top: 14px; font-size: 14px; color: var(--c-text-muted); letter-spacing: -0.01em; }
 .final__text { margin: 24px auto 32px; max-width: 34ch; font-size: var(--fs-lead); line-height: 1.15; }
 .final__btn { height: 60px; padding: 0 34px; font-size: 18px; }
 
 /* ===== 13 Футер ===== */
-.footer { padding: clamp(64px, 8vw, 110px) var(--pad-x) 24px; }
+.footer { padding: clamp(64px, 8vw, 110px) var(--gutter) 24px; }
 .footer__top { display: grid; grid-template-columns: minmax(0, 6fr) repeat(2, minmax(0, 2fr)); gap: 32px; }
 .footer__tagline { font-size: var(--fs-lead); font-weight: 500; line-height: 1.12; max-width: 22ch; color: var(--c-text-muted); }
 .footer__col { display: flex; flex-direction: column; gap: 8px; font-size: 20px; font-weight: 500; }

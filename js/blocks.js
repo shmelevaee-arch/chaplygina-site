@@ -51,7 +51,7 @@
 (() => {
   const nums = document.querySelectorAll('[data-count]');
   if (!nums.length) return;
-  const fmt = (n) => n.toLocaleString('ru-RU');
+  const fmt = (n) => n.toLocaleString('ru-RU'); // неразрывный пробел между разрядами
   nums.forEach((el) => (el.textContent = fmt(+el.dataset.count)));
   if (window.site?.isStatic || window.site?.reduceMotion) return;
   nums.forEach((el) => (el.textContent = '0'));

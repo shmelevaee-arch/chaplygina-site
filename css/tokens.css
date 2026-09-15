@@ -22,6 +22,7 @@
 
   /* отступы */
   --pad-x: clamp(20px, 2.8vw, 40px);
+  --gutter: max(var(--pad-x), calc((100vw - 1440px) / 2)); /* контент не шире 1440 */
   --header-h: 64px;
 
   /* движение */

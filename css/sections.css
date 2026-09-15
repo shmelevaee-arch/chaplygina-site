@@ -1,13 +1,12 @@
 /* Общие приёмы для разделов: шапка раздела с номером, контейнер, появление, кнопки-ссылки */
 
-.section { padding: clamp(96px, 12vw, 180px) var(--pad-x) 0; }
+.section { padding: clamp(96px, 12vw, 180px) var(--gutter) 0; }
 .section:last-of-type { padding-bottom: clamp(96px, 12vw, 180px); }
 
 /* шапка раздела: заголовок + номер справа + линия, как «Featured Work 03» в референсе */
 .section__head {
   display: flex; justify-content: space-between; align-items: flex-end; gap: 24px;
-  padding-bottom: 20px; margin-bottom: clamp(40px, 5vw, 64px);
-  border-bottom: 1px solid var(--c-line);
+  margin-bottom: clamp(40px, 5vw, 64px);
 }
 .section__title { font-size: var(--fs-h2); font-weight: 500; line-height: 1; letter-spacing: var(--track-tight); }
 .section__num { font-size: 20px; font-weight: 500; font-variant-numeric: tabular-nums; color: var(--c-text-muted); }

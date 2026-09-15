@@ -27,14 +27,14 @@ a:hover .roll__inner, a:focus-visible .roll__inner { transform: translateY(-50%)
 .hero {
   position: relative; isolation: isolate;
   min-height: max(100svh, 720px);
-  padding: calc(var(--header-h) + 4vh) var(--pad-x) clamp(16px, 2.5vh, 28px);
+  padding: calc(var(--header-h) + 6vh) var(--gutter) clamp(16px, 2.5vh, 28px);
   display: flex; flex-direction: column;
   overflow: hidden;
 }
 
 /* плейсхолдер фото: красный фон, тёмный силуэт, зерно. Заменится кадром со съёмки */
 .hero__photo {
-  position: absolute; inset: 0 0 18% 0; z-index: -1;
+  position: absolute; inset: 0 0 12% 0; z-index: -1;
   background:
     linear-gradient(100deg, transparent 40%, rgba(10, 2, 4, 0.55) 78%, rgba(10, 2, 4, 0.75) 100%),
     radial-gradient(90% 80% at 22% 30%, #e3152f 0%, var(--c-red) 42%, var(--c-red-deep) 100%);
@@ -56,16 +56,16 @@ a:hover .roll__inner, a:focus-visible .roll__inner { transform: translateY(-50%)
 
 .hero__row {
   display: grid; grid-template-columns: 1fr minmax(0, 560px) 1fr; gap: 24px;
-  align-items: start; margin-top: auto; margin-bottom: clamp(24px, 4vh, 48px);
+  align-items: start;
 }
-.hero__meta { font-weight: 500; line-height: 1.15; }
+.hero__meta { font-size: var(--fs-lead); font-weight: 500; line-height: 1.05; }
 .hero__roles .reveal-line { display: block; }
 .hero__roles { justify-self: end; text-align: right; font-size: var(--fs-lead); font-weight: 500; line-height: 1.05; }
 
-.hero__offer { font-size: var(--fs-lead); font-weight: 500; line-height: 1.12; }
+.hero__offer { font-size: var(--fs-lead); font-weight: 500; line-height: 1.05; }
 .hero__offer p { text-indent: 3.2em; } /* отступ первой строки – приём референса */
 
-.hero__actions { margin-top: 28px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; }
+.hero__actions { margin-top: 18px; font-size: 18px; text-indent: 0; }
 .btn {
   display: inline-flex; align-items: center; gap: 10px;
   height: 52px; padding: 0 26px; border-radius: 999px;
@@ -87,11 +87,16 @@ a:hover .roll__inner, a:focus-visible .roll__inner { transform: translateY(-50%)
 .wordmark {
   font-weight: 700; text-transform: uppercase; letter-spacing: var(--track-xtight);
   line-height: 0.8; white-space: nowrap;
-  margin: 0;
+  margin: auto 0 0;
   font-size: 15vw; /* запасное значение до подгонки */
 }
 .wordmark__line { display: block; overflow: hidden; padding-top: 0.06em; }
-.wordmark__line > span { display: inline-block; }
+.wordmark__line > span {
+  display: inline-block;
+  /* градиентная заливка, как у вордмарка референса: сверху белая, книзу фото просвечивает */
+  background: linear-gradient(180deg, #ffffff 0%, rgba(255,255,255,0.94) 45%, rgba(255,232,235,0.72) 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
 
 /* ---------- появление при загрузке ---------- */
 .intro .reveal-line { display: block; overflow: hidden; }
@@ -113,8 +118,9 @@ a:hover .roll__inner, a:focus-visible .roll__inner { transform: translateY(-50%)
 
   .hero { padding-top: calc(var(--header-h) + 24px); padding-bottom: 84px; } /* место под нижнюю плашку */
   .hero__photo { inset: 0 0 12% 0; }
-  .hero__photo-note { left: var(--pad-x); right: auto; }
-  .hero__meta, .hero__actions { display: none; } /* на телефоне это дублирует плашку и шум */
+  .hero__photo-note { left: var(--pad-x); right: auto; top: auto; bottom: 26%; }
+  .hero__actions { display: none; } /* на телефоне кнопка живёт в нижней плашке */
+  .hero__meta { font-size: 16px; }
   .hero__row { grid-template-columns: 1fr; gap: 20px; }
   .hero__roles { justify-self: start; text-align: left; order: -1; font-size: 17px; color: var(--c-text-muted); }
   .hero__roles .reveal-line { display: inline-block; }
