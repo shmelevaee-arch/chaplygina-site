@@ -1,0 +1,30 @@
+/* Токены: цвета, шрифт, отступы. Источник значений – разбор референса KAFAYA */
+:root {
+  /* цвета */
+  --c-bg: #121212;
+  --c-bg-deep: #0a0a0a;
+  --c-text: #ffffff;
+  --c-text-muted: rgba(255, 255, 255, 0.7);
+  --c-line: rgba(217, 217, 217, 0.5);
+  --c-red: #c7102e;
+  --c-red-deep: #6e0715;
+
+  /* шрифт: Inter с оптическим размером – в крупных кеглях ведёт себя как Inter Display */
+  --font: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --track-tight: -0.03em;
+  --track-xtight: -0.045em;
+
+  /* кегли: min / резиновый / max */
+  --fs-nav: 16px;
+  --fs-body: clamp(16px, 1.2vw, 20px);
+  --fs-lead: clamp(22px, 1.9vw, 28px);
+  --fs-h2: clamp(32px, 3.4vw, 48px);
+
+  /* отступы */
+  --pad-x: clamp(20px, 2.8vw, 40px);
+  --header-h: 64px;
+
+  /* движение */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-roll: cubic-bezier(0.44, 0, 0.56, 1);
+}

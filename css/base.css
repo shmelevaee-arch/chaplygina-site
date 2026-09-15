@@ -1,0 +1,30 @@
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: auto; } /* плавный скролл делает Lenis */
+
+body {
+  font-family: var(--font);
+  font-optical-sizing: auto;
+  font-size: var(--fs-body);
+  line-height: 1.35;
+  letter-spacing: var(--track-tight);
+  background: var(--c-bg);
+  color: var(--c-text);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img, video { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; border: 0; background: none; cursor: pointer; }
+
+:focus-visible { outline: 2px solid var(--c-red); outline-offset: 3px; }
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
