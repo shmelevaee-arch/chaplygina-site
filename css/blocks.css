@@ -142,3 +142,41 @@
   .stories__slides { min-height: 0; }
   .steps__aside { position: static; }
 }
+
+/* ===== 07 Цены ===== */
+.prices__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.price { display: flex; flex-direction: column; gap: 10px; padding: clamp(24px, 2.5vw, 36px); border-radius: 6px; background: #1b1b1b; }
+.price--accent { background: linear-gradient(160deg, #2a0a10 0%, #1b1b1b 70%); box-shadow: inset 0 0 0 1px rgba(199,16,46,0.5); }
+.price__title { font-size: clamp(24px, 2.2vw, 32px); font-weight: 600; line-height: 1; }
+.price__value { margin-top: 24px; font-size: clamp(40px, 4.4vw, 64px); font-weight: 600; line-height: 1; letter-spacing: -0.05em; white-space: nowrap; }
+.price__meta { font-weight: 500; }
+.price > .muted { margin-bottom: 24px; }
+.price .btn { margin-top: auto; align-self: flex-start; }
+.prices__note { margin-top: 24px; }
+
+/* ===== 08 Курсы: карточки, приём Featured Work ===== */
+.courses__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.course__media { display: block; width: 100%; aspect-ratio: 4 / 3; border-radius: 4px; transition: filter 0.4s var(--ease-out); }
+button.course__media:hover { filter: brightness(1.12); }
+.course__media--soon { display: grid; place-items: center; border: 1px dashed var(--c-line); font-size: clamp(40px, 5vw, 72px); font-weight: 700; letter-spacing: -0.04em; color: rgba(255,255,255,0.25); }
+.course__body { padding-top: 20px; }
+.course__title { margin: 8px 0 10px; font-size: clamp(24px, 2.2vw, 32px); font-weight: 600; line-height: 1; }
+.course__foot { margin-top: 18px; display: flex; justify-content: space-between; align-items: center; }
+.course__price { font-weight: 600; }
+.modal__list { list-style: none; margin: 16px 0 20px; border-top: 1px solid var(--c-line); }
+.modal__list li { padding: 12px 0; border-bottom: 1px solid var(--c-line); }
+.modal .btn { margin-top: 20px; }
+
+/* ===== 09 Гайд ===== */
+.guide__card {
+  display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 32px; align-items: end;
+  padding: clamp(28px, 4vw, 64px); border-radius: 6px;
+  background: radial-gradient(120% 140% at 0% 0%, #6e0715 0%, #2a0a10 45%, #161616 100%);
+}
+.guide__title { margin: 10px 0 16px; font-size: clamp(36px, 4.4vw, 64px); font-weight: 600; line-height: 0.95; letter-spacing: -0.04em; }
+.guide__text { font-size: var(--fs-lead); line-height: 1.15; max-width: 30ch; }
+.guide__action { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
+
+@media (max-width: 900px) {
+  .prices__grid, .courses__grid, .guide__card { grid-template-columns: 1fr; }
+}
