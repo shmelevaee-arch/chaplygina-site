@@ -94,14 +94,15 @@ a:hover .roll__inner, a:focus-visible .roll__inner { transform: translateY(-50%)
   mix-blend-mode: difference;
   font-size: 15vw; /* запасное значение до подгонки */
 }
+.hero .wordmark { margin-top: auto; } /* фамилия всегда прижата к низу первого экрана */
 .wordmark__line { display: block; overflow: hidden; padding-top: 0.06em; }
-.wordmark__line > span { display: inline-block; }
+.wordmark__line > span { display: inline-block; padding-right: 0.08em; } /* компенсация отрицательного трекинга и выноса «А», иначе последняя буква режется */
 
 /* ---------- появление при загрузке ---------- */
 .intro .reveal-line { display: block; overflow: hidden; }
 .intro .reveal-line > * { display: block; transform: translateY(105%); transition: transform 1s var(--ease-out) var(--d, 0s); }
 .intro.is-ready .reveal-line > * { transform: none; }
-.intro .wordmark__line > span { display: inline-block; } /* ширину меряет скрипт – блоком быть нельзя */
+.intro .wordmark__line > span { display: inline-block; padding-right: 0.08em; } /* компенсация отрицательного трекинга и выноса «А», иначе последняя буква режется */ /* ширину меряет скрипт – блоком быть нельзя */
 .intro .fade { opacity: 0; transition: opacity 1.2s var(--ease-out) var(--d, 0s); }
 .intro.is-ready .fade { opacity: 1; }
 
