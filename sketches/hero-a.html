@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ru" class="intro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Первый экран – вариант A</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/hero.css">
+</head>
+<body>
+<header class="header fade" style="--d:.6s">
+  <a class="header__logo" href="#">Татьяна Чаплыгина</a>
+  <nav class="header__nav" aria-label="Разделы">
+    <a href="#napravleniya" data-roll>С чем работаю</a>
+    <a href="#podhod" data-roll>Подход</a>
+    <a href="#obrazovanie" data-roll>Образование</a>
+    <a href="#ceny" data-roll>Цены</a>
+  </nav>
+  <a class="header__cta" href="https://t.me/chaplygina_expert" target="_blank" rel="noopener"><span data-roll>Написать в Telegram</span><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 8 8 2M3 2h5v5" stroke="currentColor" stroke-width="1.4" fill="none"/></svg></a>
+  <button class="header__burger" aria-label="Открыть меню"><i></i><i></i><i></i><i></i></button>
+</header>
+
+<main>
+<section class="hero">
+  <div class="hero__photo" aria-hidden="true"><span class="hero__photo-note">Здесь кадр фотосессии: крупный план на красном</span></div>
+
+  <div class="hero__row">
+    <p class="hero__meta fade" style="--d:.9s">Москва и онлайн<br>18+</p>
+
+    <div class="hero__offer">
+      <h1 class="visually-hidden">Татьяна Чаплыгина – психолог, сексолог, секс-коуч</h1>
+      <span class="reveal-line"><p style="--d:.35s">Разбираемся с тем, о&nbsp;чём вы ни&nbsp;с&nbsp;кем не&nbsp;говорили. Конкретно, без&nbsp;стыда и&nbsp;без&nbsp;лет терапии.</p></span>
+      <div class="hero__actions fade" style="--d:.8s">
+        <a class="btn" href="https://t.me/chaplygina_expert" target="_blank" rel="noopener">Написать в Telegram</a>
+        <small>Отвечаю сама</small>
+      </div>
+    </div>
+
+    <p class="hero__roles">
+      <span class="reveal-line"><span style="--d:.45s">Психолог</span></span>
+      <span class="reveal-line"><span style="--d:.52s">Сексолог</span></span>
+      <span class="reveal-line"><span style="--d:.59s">Секс-коуч</span></span>
+    </p>
+  </div>
+
+  <p class="hero__proof fade" style="--d:1s">
+    <span><b>14</b> документов об образовании</span>
+    <span><b>3 963</b> часа обучения</span>
+    <span>Ассоциация сексологов РФ</span>
+    <span>Публикация в&nbsp;газете «Metro»</span>
+  </p>
+
+  <p class="wordmark" data-fit aria-hidden="true">
+    <span class="wordmark__line reveal-line"><span style="--d:.1s">Чаплыгина</span></span>
+  </p>
+</section>
+</main>
+
+<a class="btn mobile-cta" href="https://t.me/chaplygina_expert" target="_blank" rel="noopener">Написать в Telegram</a>
+
+<script src="../js/hero.js"></script>
+</body>
+</html>
