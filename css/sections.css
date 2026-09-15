@@ -1,0 +1,50 @@
+/* Общие приёмы для разделов: шапка раздела с номером, контейнер, появление, кнопки-ссылки */
+
+.section { padding: clamp(96px, 12vw, 180px) var(--pad-x) 0; }
+.section:last-of-type { padding-bottom: clamp(96px, 12vw, 180px); }
+
+/* шапка раздела: заголовок + номер справа + линия, как «Featured Work 03» в референсе */
+.section__head {
+  display: flex; justify-content: space-between; align-items: flex-end; gap: 24px;
+  padding-bottom: 20px; margin-bottom: clamp(40px, 5vw, 64px);
+  border-bottom: 1px solid var(--c-line);
+}
+.section__title { font-size: var(--fs-h2); font-weight: 500; line-height: 1; letter-spacing: var(--track-tight); }
+.section__num { font-size: 20px; font-weight: 500; font-variant-numeric: tabular-nums; color: var(--c-text-muted); }
+.section__lead { max-width: 30ch; font-size: var(--fs-lead); font-weight: 500; line-height: 1.12; }
+
+.eyebrow { font-size: 14px; font-weight: 600; letter-spacing: 0.02em; text-transform: uppercase; color: var(--c-text-muted); }
+.muted { color: var(--c-text-muted); }
+
+/* ссылка со стрелкой */
+.link-arrow { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; }
+.link-arrow::after { content: "↗"; font-size: 0.8em; transition: transform 0.3s var(--ease-out); }
+.link-arrow:hover::after { transform: translate(2px, -2px); }
+
+.btn--red { background: var(--c-red); color: var(--c-text); }
+.btn--red:hover { background: var(--c-text); color: var(--c-bg); }
+.btn--ghost { background: transparent; color: var(--c-text); box-shadow: inset 0 0 0 1px var(--c-line); }
+.btn--ghost:hover { background: var(--c-text); color: var(--c-bg); }
+
+/* плейсхолдер фото для разделов */
+.ph {
+  position: relative; overflow: hidden; background:
+    linear-gradient(120deg, transparent 35%, rgba(10,2,4,0.55) 100%),
+    radial-gradient(100% 90% at 30% 25%, #d51230 0%, var(--c-red) 40%, var(--c-red-deep) 100%);
+}
+.ph__note {
+  position: absolute; left: 12px; bottom: 12px; right: 12px;
+  font-size: 12px; font-weight: 500; letter-spacing: 0; color: rgba(255,255,255,0.85);
+}
+
+/* появление при прокрутке */
+[data-reveal] { opacity: 0; transform: translateY(32px); transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out); transition-delay: var(--d, 0s); }
+[data-reveal].is-in { opacity: 1; transform: none; }
+.no-js [data-reveal], .static [data-reveal] { opacity: 1; transform: none; }
+
+/* метка «уточнить» – видна только в черновике, перед запуском убрать */
+.todo {
+  display: inline-block; margin-left: 6px; padding: 1px 6px; border-radius: 3px;
+  font-size: 11px; font-weight: 600; letter-spacing: 0; vertical-align: middle;
+  background: #ffd84d; color: #111;
+}
