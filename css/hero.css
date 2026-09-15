@@ -27,7 +27,7 @@ a:hover .roll__inner, a:focus-visible .roll__inner { transform: translateY(-50%)
 .hero {
   position: relative; isolation: isolate;
   min-height: max(100svh, 720px);
-  padding: calc(var(--header-h) + 6vh) var(--gutter) clamp(16px, 2.5vh, 28px);
+  padding: calc(var(--header-h) + 6vh) var(--gutter) 24px;
   display: flex; flex-direction: column;
   overflow: hidden;
 }
@@ -39,13 +39,10 @@ a:hover .roll__inner, a:focus-visible .roll__inner { transform: translateY(-50%)
     linear-gradient(100deg, transparent 40%, rgba(10, 2, 4, 0.55) 78%, rgba(10, 2, 4, 0.75) 100%),
     radial-gradient(90% 80% at 22% 30%, #e3152f 0%, var(--c-red) 42%, var(--c-red-deep) 100%);
 }
-.hero__photo::before { /* зерно */
-  content: ""; position: absolute; inset: 0; opacity: 0.18; mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
+.hero__photo::before { content: none; } /* у референса фото чистое, без зерна */
 .hero__photo::after { /* переход фото в чёрный фон */
   content: ""; position: absolute; inset: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.25) 0%, transparent 22%, transparent 70%, rgba(18,18,18,0.6) 88%, var(--c-bg) 100%);
+  background: linear-gradient(to bottom, rgba(18,18,18,0) 0%, rgba(18,18,18,0) 52%, var(--c-bg) 100%); /* как «Gradient Overlay» референса: нижние 48% экрана */
 }
 .hero__photo-note {
   position: absolute; right: var(--pad-x); top: calc(var(--header-h) + 16px);
@@ -57,7 +54,7 @@ a:hover .roll__inner, a:focus-visible .roll__inner { transform: translateY(-50%)
 .hero__row {
   display: grid; grid-template-columns: 1fr minmax(0, 560px) 1fr; gap: 24px;
   align-items: start;
-  margin-block: auto; /* как у референса на 1440×900: строка посередине между шапкой и фамилией */
+  margin-top: auto; /* как у референса: строка на ~48% высоты, над фамилией */
 }
 .hero__meta { font-size: var(--fs-lead); font-weight: 500; line-height: 1.05; }
 .hero__roles .reveal-line { display: block; }
@@ -94,7 +91,7 @@ a:hover .roll__inner, a:focus-visible .roll__inner { transform: translateY(-50%)
   mix-blend-mode: difference;
   font-size: 15vw; /* запасное значение до подгонки */
 }
-.hero .wordmark { margin-top: auto; } /* фамилия всегда прижата к низу первого экрана */
+.hero .wordmark { margin-top: clamp(40px, 13.5vh, 140px); } /* зазор строка→фамилия, как у референса (~120px на 900) */
 .wordmark__line { display: block; overflow: hidden; padding-top: 0.06em; }
 .wordmark__line > span { display: inline-block; padding-right: 0.08em; } /* компенсация отрицательного трекинга и выноса «А», иначе последняя буква режется */
 
