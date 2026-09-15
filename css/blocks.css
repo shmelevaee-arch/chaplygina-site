@@ -274,3 +274,17 @@ button.course__media:hover { filter: brightness(1.12); }
   background: url("../assets/img/stock/final-kiss.jpg") center / cover no-repeat;
   filter: saturate(1.1); /* кадр уже смазан в движении, как финальный экран референса */
 }
+
+/* ===== Публикации и выступления: 4 колонки, как цифры у референса ===== */
+.media__list { list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 40px 24px; }
+.media__list li { display: flex; flex-direction: column; gap: 12px; }
+.media__list .muted { font-size: 16px; line-height: 1.15; letter-spacing: -0.02em; }
+@media (max-width: 900px) { .media__list { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) { .media__list { grid-template-columns: 1fr; } }
+
+/* ===== Соцсети ===== */
+.final__social, .menu__social { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 20px; font-size: 14px; font-weight: 600; }
+.final__social { margin-top: 28px; }
+.final__social a, .menu__social a { color: var(--c-text-muted); transition: color 0.3s var(--ease-out); }
+.final__social a:hover, .menu__social a:hover { color: var(--c-text); }
+.menu__social { justify-content: flex-start; margin-top: 40px; font-size: 16px; }
