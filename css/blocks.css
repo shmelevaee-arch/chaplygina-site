@@ -49,7 +49,8 @@
 
 /* ===== 03 Как я работаю: приём About из референса ===== */
 /* как ABOUT у референса: сразу под первым экраном, подпись слева, абзац 48/48 с отступом первой строки */
-.section.about { padding-top: clamp(48px, 7vh, 72px); }
+.section.about { padding-top: clamp(120px, 16vh, 170px); } /* фамилия заходит в этот блок сверху */
+@media (max-width: 768px) { .section.about { padding-top: 56px; } }
 .about__intro { position: relative; }
 .about__label { position: absolute; left: 0; top: 0.35em; font-size: 16px; font-weight: 500; line-height: 1; letter-spacing: -0.03em; text-transform: uppercase; }
 .about__statement { font-size: var(--fs-h2); font-weight: 500; line-height: 1; letter-spacing: var(--track-tight); text-indent: 26%; }

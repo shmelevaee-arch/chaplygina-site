@@ -29,7 +29,7 @@ a:hover .roll__inner, a:focus-visible .roll__inner { transform: translateY(-50%)
   min-height: max(100svh, 720px);
   padding: calc(var(--header-h) + 6vh) var(--gutter) 24px;
   display: flex; flex-direction: column;
-  overflow: hidden;
+  overflow: visible;
 }
 
 /* плейсхолдер фото: красный фон, тёмный силуэт, зерно. Заменится кадром со съёмки */
@@ -91,7 +91,7 @@ a:hover .roll__inner, a:focus-visible .roll__inner { transform: translateY(-50%)
   mix-blend-mode: difference;
   font-size: 15vw; /* запасное значение до подгонки */
 }
-.hero .wordmark { margin-top: clamp(40px, 13.5vh, 140px); } /* зазор строка→фамилия, как у референса (~120px на 900) */
+.hero .wordmark { margin-top: clamp(16px, 3vh, 32px); margin-bottom: -0.36em; } /* текст на уровне губ, фамилия сразу под ним и заходит на чёрный фон ниже */
 .wordmark__line { display: block; overflow: hidden; padding-top: 0.06em; }
 .wordmark__line > span { display: inline-block; padding-right: 0.08em; } /* компенсация отрицательного трекинга и выноса «А», иначе последняя буква режется */
 
@@ -114,6 +114,7 @@ a:hover .roll__inner, a:focus-visible .roll__inner { transform: translateY(-50%)
   .header__burger i { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
 
   .hero { padding-top: calc(var(--header-h) + 24px); padding-bottom: 84px; } /* место под нижнюю плашку */
+  .hero .wordmark { margin-bottom: 0; }
   .hero__photo { inset: 0 0 12% 0; }
   .hero__photo-note { left: var(--pad-x); right: auto; top: auto; bottom: 26%; }
   .hero__actions { display: none; } /* на телефоне кнопка живёт в нижней плашке */
