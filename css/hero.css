@@ -34,7 +34,7 @@ a:hover .roll__inner, a:focus-visible .roll__inner { transform: translateY(-50%)
 
 /* плейсхолдер фото: красный фон, тёмный силуэт, зерно. Заменится кадром со съёмки */
 .hero__photo {
-  position: absolute; inset: 0 0 12% 0; z-index: -1;
+  position: absolute; inset: 0; z-index: -1;
   background:
     linear-gradient(100deg, transparent 40%, rgba(10, 2, 4, 0.55) 78%, rgba(10, 2, 4, 0.75) 100%),
     radial-gradient(90% 80% at 22% 30%, #e3152f 0%, var(--c-red) 42%, var(--c-red-deep) 100%);
@@ -45,7 +45,7 @@ a:hover .roll__inner, a:focus-visible .roll__inner { transform: translateY(-50%)
 }
 .hero__photo::after { /* переход фото в чёрный фон */
   content: ""; position: absolute; inset: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.25) 0%, transparent 25%, transparent 55%, var(--c-bg) 100%);
+  background: linear-gradient(to bottom, rgba(0,0,0,0.25) 0%, transparent 22%, transparent 70%, rgba(18,18,18,0.6) 88%, var(--c-bg) 100%);
 }
 .hero__photo-note {
   position: absolute; right: var(--pad-x); top: calc(var(--header-h) + 16px);
@@ -57,6 +57,7 @@ a:hover .roll__inner, a:focus-visible .roll__inner { transform: translateY(-50%)
 .hero__row {
   display: grid; grid-template-columns: 1fr minmax(0, 560px) 1fr; gap: 24px;
   align-items: start;
+  margin-block: auto; /* как у референса на 1440×900: строка посередине между шапкой и фамилией */
 }
 .hero__meta { font-size: var(--fs-lead); font-weight: 500; line-height: 1.05; }
 .hero__roles .reveal-line { display: block; }
@@ -65,7 +66,7 @@ a:hover .roll__inner, a:focus-visible .roll__inner { transform: translateY(-50%)
 .hero__offer { font-size: var(--fs-lead); font-weight: 500; line-height: 1.05; }
 .hero__offer p { text-indent: 3.2em; } /* отступ первой строки – приём референса */
 
-.hero__actions { margin-top: 18px; font-size: 18px; text-indent: 0; }
+.hero__offer .hero__actions { margin-top: 18px; font-size: 18px; text-indent: 0; }
 .btn {
   display: inline-flex; align-items: center; gap: 10px;
   height: 52px; padding: 0 26px; border-radius: 999px;
@@ -87,16 +88,14 @@ a:hover .roll__inner, a:focus-visible .roll__inner { transform: translateY(-50%)
 .wordmark {
   font-weight: 700; text-transform: uppercase; letter-spacing: var(--track-xtight);
   line-height: 0.8; white-space: nowrap;
-  margin: auto 0 0;
+  margin: 0;
+  color: #fff;
+  /* приём референса: белый текст в режиме «разница» – поверх красного фото буквы становятся бирюзовыми, поверх тёмного – белыми */
+  mix-blend-mode: difference;
   font-size: 15vw; /* запасное значение до подгонки */
 }
 .wordmark__line { display: block; overflow: hidden; padding-top: 0.06em; }
-.wordmark__line > span {
-  display: inline-block;
-  /* градиентная заливка, как у вордмарка референса: сверху белая, книзу фото просвечивает */
-  background: linear-gradient(180deg, #ffffff 0%, rgba(255,255,255,0.94) 45%, rgba(255,232,235,0.72) 100%);
-  -webkit-background-clip: text; background-clip: text; color: transparent;
-}
+.wordmark__line > span { display: inline-block; }
 
 /* ---------- появление при загрузке ---------- */
 .intro .reveal-line { display: block; overflow: hidden; }
