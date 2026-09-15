@@ -46,3 +46,58 @@
   new IntersectionObserver(([en]) => (en.isIntersecting ? (show(current), start()) : stop()), { threshold: 0.3 }).observe(root);
   show(0);
 })();
+
+// ----- 04 Образование: счётчики от нуля при появлении -----
+(() => {
+  const nums = document.querySelectorAll('[data-count]');
+  if (!nums.length) return;
+  const fmt = (n) => n.toLocaleString('ru-RU');
+  nums.forEach((el) => (el.textContent = fmt(+el.dataset.count)));
+  if (window.site?.isStatic || window.site?.reduceMotion) return;
+  nums.forEach((el) => (el.textContent = '0'));
+  const run = (el) => {
+    const end = +el.dataset.count, dur = 1600, t0 = performance.now();
+    const tick = (t) => {
+      const p = Math.min((t - t0) / dur, 1), eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = fmt(Math.round(end * eased));
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  };
+  const io = new IntersectionObserver((ens) => ens.forEach((en) => { if (en.isIntersecting) { run(en.target); io.unobserve(en.target); } }), { threshold: 0.6 });
+  nums.forEach((el) => io.observe(el));
+})();
+
+// ----- 04 Список документов: показать все -----
+(() => {
+  const btn = document.querySelector('[data-docs-toggle]');
+  if (!btn) return;
+  const list = document.getElementById(btn.getAttribute('aria-controls'));
+  const total = list.children.length;
+  btn.addEventListener('click', () => {
+    const open = list.classList.toggle('is-open');
+    btn.setAttribute('aria-expanded', open);
+    btn.textContent = open ? 'Свернуть' : `Показать все ${total}`;
+  });
+})();
+
+// ----- Модальное окно: сканы документов (data-modal-img) и курсы (data-modal-tpl) -----
+(() => {
+  const modal = document.getElementById('modal');
+  if (!modal) return;
+  const title = modal.querySelector('.modal__title'), body = modal.querySelector('.modal__body');
+  let opener = null;
+  const open = (t, html) => {
+    title.textContent = t; body.innerHTML = html;
+    window.site?.lenis?.stop();          // иначе фон под окном прокручивается
+    modal.showModal();
+  };
+  modal.addEventListener('close', () => { window.site?.lenis?.start(); opener?.focus(); });
+  modal.addEventListener('click', (e) => { if (e.target === modal || e.target.closest('[data-modal-close]')) modal.close(); });
+  document.addEventListener('click', (e) => {
+    const img = e.target.closest('[data-modal-img]');
+    const tpl = e.target.closest('[data-modal-tpl]');
+    if (img) { opener = img; open(img.dataset.modalTitle, `<img src="${img.dataset.modalImg}" alt="Скан: ${img.dataset.modalTitle}">`); }
+    if (tpl) { opener = tpl; const t = document.getElementById(tpl.dataset.modalTpl); open(t.dataset.title, t.innerHTML); }
+  });
+})();

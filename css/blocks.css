@@ -46,3 +46,62 @@
   .dirs__list li { font-size: 15px; padding: 8px 14px; }
   .dirs__layer .ph__note { right: auto; left: var(--pad-x); }
 }
+
+/* ===== 03 Как я работаю: приём About из референса ===== */
+.about__statement { font-size: var(--fs-h2); font-weight: 500; line-height: 1.05; letter-spacing: var(--track-tight); text-indent: 2.4em; max-width: 26ch; }
+.about__grid { margin-top: clamp(48px, 7vw, 110px); display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: clamp(24px, 4vw, 64px); align-items: start; }
+.about__photo { aspect-ratio: 4 / 5; border-radius: 4px; }
+.about__principles { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 4vw, 56px) clamp(24px, 3vw, 48px); }
+.about__n { display: block; font-size: 14px; font-weight: 600; color: var(--c-red); margin-bottom: 14px; letter-spacing: 0; }
+.about__principles h3 { font-size: clamp(22px, 1.9vw, 28px); font-weight: 600; line-height: 1.05; margin-bottom: 12px; }
+.about__principles p { color: var(--c-text-muted); }
+
+/* ===== 04 Образование: счётчики + список документов ===== */
+.edu__stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(20px, 2.5vw, 40px); }
+.stat__num { display: block; font-size: clamp(48px, 6.6vw, 104px); white-space: nowrap; font-weight: 600; line-height: 0.9; letter-spacing: -0.06em; font-variant-numeric: tabular-nums; }
+.stat__label { display: block; margin: 14px 0 8px; font-size: 14px; font-weight: 600; letter-spacing: 0.02em; text-transform: uppercase; }
+.stat p { font-size: 16px; max-width: 28ch; }
+
+.docs { list-style: none; margin-top: clamp(64px, 8vw, 120px); border-top: 1px solid var(--c-line); }
+.docs__row {
+  display: grid; grid-template-columns: 64px minmax(0, 1fr) minmax(0, 0.55fr) 72px 64px; gap: 20px; align-items: baseline;
+  padding: 18px 0; border-bottom: 1px solid var(--c-line); font-size: 17px;
+}
+.docs__year, .docs__hours { font-variant-numeric: tabular-nums; color: var(--c-text-muted); }
+.docs__name { font-weight: 500; }
+.docs__org { color: var(--c-text-muted); }
+.docs__hours { text-align: right; }
+.docs__scan { justify-self: end; font-size: 14px; font-weight: 600; color: var(--c-text); border-bottom: 1px solid var(--c-red); }
+.docs__scan:hover { color: var(--c-red); }
+.docs:not(.is-open) [data-more] { display: none; }
+.docs__foot { margin-top: 32px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px; }
+
+/* ===== модальное окно (дипломы, курсы) ===== */
+.modal {
+  margin: auto; width: min(920px, calc(100vw - 32px)); max-height: calc(100svh - 32px);
+  padding: clamp(24px, 3vw, 40px); border: 0; border-radius: 6px;
+  background: var(--c-bg); color: var(--c-text); overflow: auto;
+}
+.modal::backdrop { background: rgba(0, 0, 0, 0.75); backdrop-filter: blur(4px); }
+.modal[open] { animation: modal-in 0.4s var(--ease-out); }
+@keyframes modal-in { from { opacity: 0; transform: translateY(20px); } }
+.modal__close { position: sticky; float: right; top: 0; width: 40px; height: 40px; font-size: 28px; line-height: 1; border-radius: 50%; background: rgba(255,255,255,0.08); }
+.modal__close:hover { background: var(--c-red); }
+.modal__title { font-size: clamp(22px, 2vw, 32px); font-weight: 600; line-height: 1.1; margin: 4px 56px 24px 0; }
+.modal__body img { width: 100%; border-radius: 4px; }
+
+@media (max-width: 900px) {
+  .edu__stats { grid-template-columns: 1fr 1fr; row-gap: 40px; }
+  .stat__num { font-size: clamp(44px, 12vw, 72px); }
+  .about__grid { grid-template-columns: 1fr; }
+  .about__photo { aspect-ratio: 4 / 3; }
+}
+@media (max-width: 600px) {
+  .about__statement { text-indent: 0; }
+  .about__principles { grid-template-columns: 1fr; }
+  .docs__row { grid-template-columns: 44px minmax(0, 1fr) auto; row-gap: 4px; font-size: 15px; }
+  .docs__org { grid-column: 2; font-size: 14px; }
+  .docs__hours { grid-column: 3; grid-row: 1; }
+  .docs__scan { grid-column: 3; grid-row: 2; }
+  .docs__scan.is-empty { display: none; }
+}
