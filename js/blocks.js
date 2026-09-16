@@ -179,3 +179,26 @@
   }));
   list.addEventListener('pointerleave', () => { active = false; cover.classList.remove('is-on'); });
 })();
+
+// «Как проходит консультация»: шаги загораются по мере прокрутки, красная линия слева растёт
+(() => {
+  const list = document.querySelector('[data-steps]');
+  if (!list) return;
+  const steps = [...list.querySelectorAll('.step')];
+  if (window.site?.isStatic || window.site?.reduceMotion) {
+    steps.forEach((s) => s.classList.add('is-active'));
+    list.style.setProperty('--p', 1);
+    return;
+  }
+  let raf = 0;
+  const update = () => {
+    raf = 0;
+    const line = innerHeight * 0.6; // «читающая» линия чуть ниже середины экрана
+    const r = list.getBoundingClientRect();
+    list.style.setProperty('--p', Math.min(1, Math.max(0, (line - r.top) / r.height)).toFixed(3));
+    steps.forEach((s) => s.classList.toggle('is-active', s.getBoundingClientRect().top < line));
+  };
+  addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(update); }, { passive: true });
+  addEventListener('resize', update);
+  update();
+})();

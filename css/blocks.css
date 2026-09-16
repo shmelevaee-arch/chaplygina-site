@@ -131,25 +131,47 @@
 .stories__todo { margin-top: 48px; font-size: 14px; }
 
 /* ===== 06 Как проходит консультация ===== */
-.steps__grid { display: grid; grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); gap: clamp(32px, 5vw, 80px); align-items: start; }
-.steps__list { list-style: none; }
-.steps__list li { display: grid; grid-template-columns: clamp(64px, 8vw, 120px) 1fr; gap: 20px; padding: clamp(20px, 2.4vw, 32px) 0; }
-.steps__n { font-size: clamp(36px, 4vw, 64px); font-weight: 600; line-height: 0.9; letter-spacing: -0.05em; color: var(--c-red); }
-.steps__list h3 { margin-bottom: 10px; }
-.steps__list p { color: var(--c-text-muted); max-width: 46ch; }
-/* карточки светлеют относительно своего листа, а не фиксированным цветом */
-.steps__aside { position: sticky; top: calc(var(--header-h) + 24px); padding: clamp(24px, 2.5vw, 36px); border-radius: 6px; background: rgba(255, 255, 255, 0.055); }
-.steps__aside h3 { margin-bottom: 18px; }
-.steps__aside ul { list-style: none; margin-bottom: 20px; }
-.steps__aside li { padding: 6px 0 6px 28px; position: relative; }
-.steps__aside li::before { content: "×"; position: absolute; left: 0; color: var(--c-red); font-weight: 700; }
-.steps__aside p { font-size: 14px; }
+/* заголовок слева стоит на месте, пока справа листаются шаги */
+.steps__grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(32px, 5vw, 80px); align-items: start; }
+.steps__head { position: sticky; top: calc(var(--header-h) + clamp(32px, 5vh, 64px)); }
+.steps__note { margin-top: 20px; max-width: 30ch; }
+
+/* шаги: пройденные и текущий – белые, следующие приглушены; слева линия, красная часть растёт с прокруткой (--p от 0 до 1) */
+.steps__list { position: relative; list-style: none; padding-left: clamp(24px, 3vw, 48px); }
+.steps__list::before, .steps__list::after { content: ""; position: absolute; left: 0; top: 0; bottom: 0; }
+.steps__list::before { width: 1px; background: var(--c-line); opacity: 0.4; }
+.steps__list::after { width: 2px; left: -0.5px; background: var(--c-red); transform: scaleY(var(--p, 0)); transform-origin: top; }
+.step { display: grid; grid-template-columns: clamp(56px, 6vw, 88px) minmax(0, 1fr); gap: 16px; padding: clamp(28px, 4vw, 56px) 0; }
+.step:first-child { padding-top: 0; }
+/* каждый шаг – примерно треть экрана: загораются по одному, пока читаешь, а заголовок слева стоит */
+.step { min-height: 34vh; }
+@media (max-width: 900px) { .step { min-height: 26vh; } }
+.step__n { padding-top: 4px; }
+.step h3 { margin-bottom: 10px; color: rgba(255, 255, 255, 0.28); transition: color 0.6s var(--ease-out); }
+.step p { max-width: 46ch; color: rgba(255, 255, 255, 0.2); transition: color 0.6s var(--ease-out); }
+.step .step__n { color: rgba(255, 255, 255, 0.28); transition: color 0.6s var(--ease-out); }
+.step.is-active h3, .step.is-active .step__n { color: var(--c-text); }
+.step.is-active p { color: var(--c-text-muted); }
+
+/* «Что вы не обязаны делать»: крупные фразы, по которым проводится линия */
+.steps__not { margin-top: clamp(80px, 10vw, 160px); }
+.steps__not ul { list-style: none; margin-top: 24px; border-top: 1px solid var(--c-line); }
+.steps__not li { padding: clamp(18px, 2.2vw, 28px) 0; border-bottom: 1px solid var(--c-line); }
+/* линия – фон строчного элемента: при переносе фразы на две строки зачёркивается каждая строка, слева направо */
+.strike {
+  font-size: var(--fs-h2); font-weight: 500; line-height: 1.1; letter-spacing: var(--track-tight);
+  background: linear-gradient(var(--c-red), var(--c-red)) 0 58% / 0% max(2px, 0.06em) no-repeat;
+  -webkit-box-decoration-break: slice; box-decoration-break: slice;
+  transition: background-size 0.8s var(--ease-kafaya), color 0.6s var(--ease-out);
+  transition-delay: calc(0.5s + var(--i) * 0.3s), calc(1s + var(--i) * 0.3s);
+}
+.steps__not ul.is-in .strike, .static .strike { background-size: 100% max(2px, 0.06em); color: rgba(255, 255, 255, 0.45); }
 
 @media (max-width: 900px) {
   .stories__grid, .steps__grid { grid-template-columns: 1fr; }
   .stories__side { order: 2; }
   .stories__slides { min-height: 0; }
-  .steps__aside { position: static; }
+  .steps__head { position: static; }
 }
 
 /* ===== 07 Цены ===== */
