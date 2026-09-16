@@ -144,3 +144,38 @@
   menu.addEventListener('click', (e) => { if (e.target.closest('a')) set(false); });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') set(false); });
 })();
+
+// «Почитать»: обложка статьи плывёт за курсором, при переходе между строками слово перелистывается
+(() => {
+  const list = document.querySelector('.reads');
+  if (!list || !matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const rows = [...list.querySelectorAll('.read-row')];
+  const cover = document.createElement('div');
+  cover.className = 'read-cover';
+  cover.setAttribute('aria-hidden', 'true');
+  cover.innerHTML = '<div class="read-cover__card"><div class="read-cover__strip">' +
+    rows.map((r) => `<div class="read-cover__item"><span>${r.dataset.cover}</span></div>`).join('') + '</div></div>';
+  document.body.appendChild(cover); // не внутри листа: у листа transform, fixed внутри него ломается
+  const strip = cover.querySelector('.read-cover__strip');
+
+  let x = 0, y = 0, tx = 0, ty = 0, active = false, raf = 0;
+  const loop = () => {
+    const dx = tx - x;
+    x += dx * 0.14; y += (ty - y) * 0.14;
+    const tilt = Math.max(-12, Math.min(12, dx * 0.08)); // наклон по скорости движения
+    cover.style.transform = `translate3d(${x}px, ${y}px, 0) rotate(${tilt}deg)`;
+    raf = active || Math.abs(dx) > 0.5 ? requestAnimationFrame(loop) : 0;
+  };
+  const kick = () => { if (!raf) raf = requestAnimationFrame(loop); };
+
+  list.addEventListener('pointermove', (e) => { tx = e.clientX; ty = e.clientY; kick(); });
+  rows.forEach((row, i) => row.addEventListener('pointerenter', (e) => {
+    if (!active) { x = tx = e.clientX; y = ty = e.clientY; }
+    active = true;
+    cover.classList.add('is-on');
+    strip.style.transform = `translateY(${-i * 100}%)`;
+    kick();
+  }));
+  list.addEventListener('pointerleave', () => { active = false; cover.classList.remove('is-on'); });
+})();
