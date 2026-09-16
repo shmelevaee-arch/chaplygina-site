@@ -1,0 +1,60 @@
+/* Страница статьи: крупный заголовок, типографская обложка, спокойная колонка текста */
+
+/* полоса прочитанного под шапкой */
+.read-progress {
+  position: fixed; left: 0; right: 0; top: var(--header-h); z-index: 51; height: 2px;
+  background: var(--c-red); transform: scaleX(0); transform-origin: left;
+}
+
+/* ---------- заголовок статьи ---------- */
+.article-head { padding: calc(var(--header-h) + clamp(32px, 6vw, 96px)) var(--gutter) calc(var(--panel-lift) + clamp(32px, 4vw, 64px)); }
+.article-back { display: inline-block; font-size: 16px; font-weight: 600; color: var(--c-text-muted); transition: color 0.3s var(--ease-out), transform 0.4s var(--ease-out); }
+.article-back:hover { color: var(--c-text); transform: translateX(-4px); }
+.article-meta { margin-top: clamp(32px, 4vw, 56px); display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 20px; font-size: 16px; color: var(--c-text-muted); letter-spacing: -0.02em; }
+.article-meta .eyebrow { color: var(--c-red); }
+.article-title {
+  margin-top: 20px; max-width: 20ch;
+  font-size: clamp(36px, 5.6vw, 88px); font-weight: 600; line-height: 0.98; letter-spacing: -0.045em;
+}
+.article-title .reveal-line { display: block; }
+
+.article-cover {
+  margin-top: clamp(40px, 5vw, 72px); aspect-ratio: 16 / 6; border-radius: 6px; overflow: hidden;
+  display: flex; align-items: flex-end; padding: clamp(16px, 2.6vw, 40px);
+  background: radial-gradient(90% 140% at 20% 10%, #e3152f 0%, var(--c-red) 38%, var(--c-red-deep) 100%);
+  font-size: clamp(56px, 13vw, 210px); font-weight: 700; line-height: 0.8;
+  text-transform: uppercase; letter-spacing: var(--track-xtight); white-space: nowrap;
+}
+.article-cover .reveal-line { display: block; padding-top: 0.06em; }
+
+/* ---------- текст ---------- */
+#statya { --panel-bg: #121212; }
+#eshche { --panel-bg: #181818; }
+
+.article-body {
+  max-width: 720px; margin: 0 auto;
+  font-size: clamp(18px, 1.35vw, 21px); line-height: 1.6; letter-spacing: -0.01em; color: rgba(255, 255, 255, 0.84);
+}
+.article-body > * + * { margin-top: 1em; }
+.article-body > p:first-child { font-size: 1.22em; line-height: 1.4; color: var(--c-text); letter-spacing: -0.02em; }
+.article-body h2, .article-body h3 { color: var(--c-text); font-weight: 600; letter-spacing: -0.03em; }
+.article-body h2 { margin-top: 2.2em; font-size: clamp(24px, 2.2vw, 32px); line-height: 1.1; }
+.article-body h3 { margin-top: 1.6em; font-size: clamp(20px, 1.6vw, 24px); line-height: 1.15; }
+.article-body h2 + *, .article-body h3 + * { margin-top: 0.6em; }
+.article-body b { color: var(--c-text); font-weight: 600; }
+.article-body ul, .article-body ol { padding-left: 1.2em; }
+.article-body li + li { margin-top: 0.4em; }
+.article-body li::marker { color: var(--c-red); }
+
+/* ---------- автор ---------- */
+.article-author {
+  max-width: 720px; margin: clamp(56px, 7vw, 96px) auto 0; padding-top: 32px; border-top: 1px solid var(--c-line);
+  display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 24px; align-items: start;
+}
+.article-author__photo { aspect-ratio: 1; border-radius: 50%; background: url("../assets/img/about-tanya.jpg") center 14% / cover no-repeat; }
+.article-author .muted { margin: 8px 0 20px; max-width: 44ch; }
+
+@media (max-width: 600px) {
+  .article-cover { aspect-ratio: 4 / 3; }
+  .article-author { grid-template-columns: 64px minmax(0, 1fr); gap: 16px; }
+}
