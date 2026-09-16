@@ -219,7 +219,8 @@ button.course__media:hover { filter: brightness(1.12); }
   font-size: clamp(40px, 7vw, 104px); font-weight: 700; line-height: 1;
   text-transform: uppercase; letter-spacing: var(--track-xtight); white-space: nowrap;
 }
-.ticker__row .hollow { color: transparent; -webkit-text-stroke: 1px rgba(255, 255, 255, 0.5); }
+/* контурный текст не подходит: у Inter перекрывающиеся контуры, обводка рисует внутренние стыки букв */
+.ticker__row .hollow { color: rgba(255, 255, 255, 0.22); }
 .ticker__row .dot { font-size: 0.34em; color: var(--c-red); }
 .ticker:hover .ticker__track { animation-duration: 12s; }
 @keyframes ticker { to { transform: translateX(-50%); } }
