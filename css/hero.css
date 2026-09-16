@@ -11,7 +11,7 @@
   transition: background 0.4s var(--ease-out), backdrop-filter 0.4s var(--ease-out);
 }
 .header.is-scrolled { background: rgba(18, 18, 18, 0.82); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
-.header__logo { justify-self: start; letter-spacing: -0.01em; }
+.header__logo { justify-self: start; }
 .header__nav { display: flex; gap: 28px; }
 .header__cta { justify-self: end; display: inline-flex; align-items: center; gap: 6px; }
 .header__cta svg { width: 10px; height: 10px; }
