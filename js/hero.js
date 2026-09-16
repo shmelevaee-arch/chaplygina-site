@@ -34,7 +34,10 @@ function alignHeroPhoto() {
   const offer = document.querySelector('.hero__offer');
   if (!photo || !offer) return;
   const W = photo.clientWidth, H = photo.clientHeight;
-  const target = offer.getBoundingClientRect().top - photo.getBoundingClientRect().top;
+  // offsetTop не учитывает transform: во время появления фото увеличено, а текст сдвинут
+  let target = 0;
+  for (let el = offer; el && el !== photo.offsetParent; el = el.offsetParent) target += el.offsetTop;
+  target -= photo.offsetTop;
   // высота кадра: не меньше «cover» и такая, чтобы губы встали на target и кадр всё ещё закрывал блок
   const h = Math.max(H, W / HERO_IMG.ratio, target / HERO_IMG.lipsTop, (H - target) / (1 - HERO_IMG.lipsTop));
   const w = h * HERO_IMG.ratio;

@@ -133,3 +133,21 @@ a:hover .roll__inner, a:focus-visible .roll__inner { transform: translateY(-50%)
     box-shadow: 0 10px 30px rgba(0,0,0,0.45);
   }
 }
+
+/* ---------- загрузка первого экрана: значения сняты с KAFAYA ----------
+   фото 110% → 100% за 1,8 с; колонки над фамилией опускаются сверху на 30px по очереди (0,15 / 0,25 / 0,35 с);
+   фамилия поднимается снизу, шапка опускается сверху – обе на 0,75 с */
+.intro .hero .reveal-line > * { transform: none; transition: none; } /* в первом экране вместо выезда из-под маски */
+.intro .hero .fade { opacity: 1; transition: none; }
+.intro .hero__photo { transform: scale(1.1); transition: transform 1.8s var(--ease-kafaya) 0.15s; }
+.intro .hero__meta, .intro .hero__offer, .intro .hero__roles, .intro .hero .wordmark, .intro .header {
+  opacity: 0; transition: opacity 1s var(--ease-kafaya), transform 1s var(--ease-kafaya);
+}
+.intro .hero__meta, .intro .hero__offer, .intro .hero__roles, .intro .header { transform: translateY(-30px); }
+.intro .hero .wordmark { transform: translateY(30px); }
+.intro .hero__meta { transition-delay: 0.15s; }
+.intro .hero__offer { transition-delay: 0.25s; }
+.intro .hero__roles { transition-delay: 0.35s; }
+.intro .hero .wordmark, .intro .header { transition-delay: 0.75s; }
+.intro.is-ready .hero__photo, .intro.is-ready .hero__meta, .intro.is-ready .hero__offer,
+.intro.is-ready .hero__roles, .intro.is-ready .hero .wordmark, .intro.is-ready .header { opacity: 1; transform: none; }

@@ -33,9 +33,40 @@ const io = new IntersectionObserver((entries) => {
 }, { rootMargin: '0px 0px -10% 0px' });
 document.querySelectorAll('[data-reveal]').forEach((el) => io.observe(el));
 
+// Абзац по буквам (data-letters): текст режется на слова и буквы, дальше анимирует CSS .letters.
+// Слово целиком не переносится; читалкам экрана отдаётся обычный текст
+if (!isStatic && !reduceMotion) document.querySelectorAll('[data-letters]').forEach((el) => {
+  const plain = document.createElement('span');
+  plain.className = 'visually-hidden';
+  plain.textContent = el.textContent;
+  const visual = document.createElement('span');
+  visual.setAttribute('aria-hidden', 'true');
+  let i = 0;
+  el.textContent.split(/( +)/).forEach((part) => {
+    if (!part) return;
+    if (/^ +$/.test(part)) { visual.append(' '); return; } // обычный пробел – место переноса, неразрывный остаётся внутри слова
+    const word = document.createElement('span');
+    word.className = 'letters__word';
+    for (const ch of part) {
+      const c = document.createElement('span');
+      c.className = 'letters__char';
+      c.style.setProperty('--i', i++);
+      c.textContent = ch;
+      word.append(c);
+    }
+    visual.append(word);
+  });
+  el.replaceChildren(plain, visual);
+  el.classList.add('letters');
+  io.observe(el);
+});
+
 // Шапка получает фон, как только страница прокручена
 const header = document.querySelector('.header');
-const onScroll = () => header && header.classList.toggle('is-scrolled', window.scrollY > 10);
+// как у KAFAYA: над фото шапка прозрачная, фон появляется, когда первый экран уехал
+const heroEl = document.querySelector('.hero');
+const onScroll = () => header && header.classList.toggle('is-scrolled',
+  window.scrollY > (heroEl ? heroEl.offsetHeight - header.offsetHeight : 10));
 window.addEventListener('scroll', onScroll, { passive: true });
 onScroll();
 
