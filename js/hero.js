@@ -25,6 +25,8 @@ function fitWordmark() {
     wm.style.fontSize = '100px';
     const widest = Math.max(...[...wm.querySelectorAll('.wordmark__line > span')].map((s) => s.getBoundingClientRect().width));
     wm.style.fontSize = `${(100 * target) / widest}px`;
+    // рамка фамилии той же ширины, что текст, иначе обрезка строки (overflow: hidden) съедает последнюю букву
+    wm.style.width = target > column ? `${target}px` : '';
     wm.style.marginLeft = target > column ? `${-(target - column) / 2}px` : '';
   });
 }
