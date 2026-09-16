@@ -89,7 +89,8 @@ main > .section { padding-bottom: calc(var(--panel-lift) + clamp(56px, 7vw, 96px
 #voprosy { --panel-bg: #101010; }
 .ticker { --panel-bg: #0d0d0d; }
 #napisat { --panel-bg: #2a0a10; } /* лист с фото */
-.footer { --panel-bg: var(--c-bg-deep); }
+/* подвал как у KAFAYA – ровный чёрный, без листа: без скругления, тени и свечения */
+.footer { --panel-bg: var(--c-bg); margin-top: 0; border-radius: 0; box-shadow: none; background-image: none; }
 
 /* лист приподнимается и «садится» на предыдущий по мере прокрутки */
 @supports (animation-timeline: view()) {

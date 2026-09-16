@@ -288,7 +288,7 @@ button.course__media:hover { filter: brightness(1.12); }
 .final__bg { position: absolute; inset: 0; z-index: -1; filter: saturate(1.1); }
 .final__bg::after { content: ""; position: absolute; inset: 0; background: radial-gradient(60% 60% at 50% 50%, rgba(0,0,0,0.1), rgba(0,0,0,0.55)); }
 .final__bg .ph__note { z-index: 1; left: auto; right: var(--pad-x); bottom: 20px; }
-.final__inner { padding: 64px var(--pad-x) calc(64px + var(--panel-lift)); max-width: 980px; }
+.final__inner { padding: 64px var(--pad-x); max-width: 980px; } /* подвал не наезжает на финальный экран */
 .final__title { font-size: clamp(26px, 2.6vw, 40px); font-weight: 600; line-height: 1; letter-spacing: -0.03em; text-transform: uppercase; }
 .final__link { margin-top: 28px; font-size: clamp(18px, 1.4vw, 22px); }
 .final__hint { margin-top: 14px; font-size: 14px; color: var(--c-text-muted); letter-spacing: -0.01em; }
@@ -296,20 +296,16 @@ button.course__media:hover { filter: brightness(1.12); }
 .final__btn { height: 60px; padding: 0 34px; font-size: 18px; }
 
 /* ===== 13 Футер ===== */
-.footer { padding: clamp(64px, 8vw, 110px) var(--gutter) 24px; }
-.footer__top { display: grid; grid-template-columns: minmax(0, 6fr) repeat(2, minmax(0, 2fr)); gap: 32px; }
-.footer__tagline { font-size: var(--fs-lead); font-weight: 500; line-height: 1.1; max-width: 22ch; color: var(--c-text-muted); }
-.footer__col { display: flex; flex-direction: column; gap: 8px; font-size: 20px; font-weight: 500; }
-.footer__col .eyebrow { margin-bottom: 8px; }
-.footer__col a:hover { color: var(--c-red); }
-/* фамилия в подвале: тот же металлический перелив, что даёт режим «разница» на первом экране */
-.footer__wordmark {
-  margin-top: clamp(64px, 9vw, 140px);
-  mix-blend-mode: normal; color: transparent;
-  background-image: linear-gradient(100deg, #ffffff 0%, #b9cad4 22%, #ffffff 46%, #8fa3ad 68%, #ffffff 84%, #c7102e 118%);
-  -webkit-background-clip: text; background-clip: text;
-}
-.footer__bottom { margin-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; font-size: 14px; color: var(--c-text-muted); }
+/* подвал как у KAFAYA: слева короткая фраза, справа две узкие колонки ссылок, огромная белая фамилия, внизу мелкая строка */
+.footer { padding: clamp(56px, 6vw, 88px) var(--gutter) 20px; }
+.footer__top { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: clamp(32px, 6vw, 96px); align-items: start; }
+.footer__tagline { font-size: var(--fs-hero); font-weight: 500; line-height: 1; max-width: 22ch; color: var(--c-text-muted); }
+.footer__col { display: flex; flex-direction: column; gap: 6px; font-size: var(--fs-hero); font-weight: 500; line-height: 1.2; }
+.footer__col .eyebrow { margin-bottom: 10px; font-size: 14px; text-transform: none; letter-spacing: -0.01em; }
+.footer__col a { transition: color 0.3s var(--ease-out); }
+.footer__col a:hover { color: var(--c-text-muted); }
+.footer__wordmark { margin-top: clamp(96px, 14vw, 220px); }
+.footer__bottom { margin-top: 16px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; font-size: 14px; color: var(--c-text-muted); }
 
 /* ===== мобильное меню ===== */
 .menu {

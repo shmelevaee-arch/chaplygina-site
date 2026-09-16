@@ -44,8 +44,8 @@ function alignHeroPhoto() {
   let target = 0;
   for (let el = offer; el && el !== photo.offsetParent; el = el.offsetParent) target += el.offsetTop;
   target -= photo.offsetTop;
-  // низ кадра достаточно довести до 90% высоты – ниже всё равно тёмный градиент
-  const bottom = H * 0.9;
+  // кадр до самого низа: под фамилией должна быть кожа, а не пустой фон – иначе режим «разница» не даёт цвета буквам
+  const bottom = H * 0.95;
   const h = Math.max(H, W / HERO_IMG.ratio, target / HERO_IMG.anchor, (bottom - target) / (1 - HERO_IMG.anchor));
   const w = h * HERO_IMG.ratio;
   const y = Math.min(0, Math.max(bottom - h, target - HERO_IMG.anchor * h));
@@ -65,6 +65,10 @@ function alignHeroPhoto() {
   }
   photo.style.backgroundPosition = `${x}px ${y}px`;
 }
+
+// сразу при загрузке, до первой отрисовки: иначе фото и фамилия сначала рисуются по умолчанию и прыгают
+fitWordmark();
+alignHeroPhoto();
 
 document.fonts.ready.then(() => {
   fitWordmark();
