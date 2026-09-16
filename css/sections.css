@@ -76,15 +76,15 @@ main > .section { padding-bottom: calc(var(--panel-lift) + clamp(56px, 7vw, 96px
 /* оттенки чередуются: светлее – темнее, разница небольшая, чтобы не рябило */
 #podhod { --panel-bg: #121212; margin-top: 0; } /* первый лист не наезжает на первый экран – фамилия стоит в край */
 #obrazovanie { --panel-bg: #181818; }
-#media { --panel-bg: #101010; }
 #napravleniya { --panel-bg: #0d0204; } /* лист с фото */
 #istorii { --panel-bg: #181818; }
-#kak-prohodit { --panel-bg: #101010; }
-#ceny { --panel-bg: #181818; }
-#kursy { --panel-bg: #101010; }
-#gayd { --panel-bg: #181818; }
-#pochitat { --panel-bg: #101010; }
-#voprosy { --panel-bg: #181818; }
+#media { --panel-bg: #101010; } /* после отзывов: доверие перед «Как проходит» и ценами */
+#kak-prohodit { --panel-bg: #181818; }
+#ceny { --panel-bg: #101010; }
+#kursy { --panel-bg: #181818; }
+#gayd { --panel-bg: #101010; }
+#pochitat { --panel-bg: #181818; }
+#voprosy { --panel-bg: #101010; }
 .ticker { --panel-bg: #0d0d0d; }
 #napisat { --panel-bg: #2a0a10; } /* лист с фото */
 .footer { --panel-bg: var(--c-bg-deep); }
