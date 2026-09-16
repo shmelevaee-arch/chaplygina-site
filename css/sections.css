@@ -43,6 +43,58 @@
 [data-reveal].is-in { opacity: 1; transform: none; }
 .no-js [data-reveal], .static [data-reveal] { opacity: 1; transform: none; }
 
+/* ===== Листы разделов: блоки наезжают друг на друга =====
+   Каждый раздел – отдельный лист: свой оттенок чёрного, скруглённый верх и тень сверху.
+   Лист сдвинут вверх на --panel-lift и ложится поверх предыдущего, поэтому видно,
+   где один блок кончается и начинается следующий. */
+main > .section,
+main > .dirs,
+main > .final,
+.footer {
+  position: relative;
+  margin-top: calc(-1 * var(--panel-lift));
+  border-radius: var(--panel-radius) var(--panel-radius) 0 0;
+  background: var(--panel-bg, var(--c-bg));
+  box-shadow: 0 -24px 48px -16px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.07);
+}
+/* низ листа: обычный отступ плюс полоса, которую перекроет следующий лист */
+main > .section { padding-bottom: calc(var(--panel-lift) + clamp(56px, 7vw, 96px)); }
+
+/* оттенки чередуются: светлее – темнее, разница небольшая, чтобы не рябило */
+#podhod { --panel-bg: #121212; }
+#obrazovanie { --panel-bg: #181818; }
+#media { --panel-bg: #101010; }
+#napravleniya { --panel-bg: #0d0204; } /* лист с фото */
+#istorii { --panel-bg: #181818; }
+#kak-prohodit { --panel-bg: #101010; }
+#ceny { --panel-bg: #181818; }
+#kursy { --panel-bg: #101010; }
+#gayd { --panel-bg: #181818; }
+#pochitat { --panel-bg: #101010; }
+#voprosy { --panel-bg: #181818; }
+#napisat { --panel-bg: #2a0a10; } /* лист с фото */
+.footer { --panel-bg: var(--c-bg-deep); }
+
+/* лист приподнимается и «садится» на предыдущий по мере прокрутки */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    main > .section,
+    main > .dirs,
+    main > .final {
+      animation: panel-rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 40%;
+    }
+    @keyframes panel-rise {
+      from { transform: translateY(40px); border-radius: calc(var(--panel-radius) * 1.5) calc(var(--panel-radius) * 1.5) 0 0; }
+      to { transform: none; }
+    }
+  }
+}
+.static main > .section,
+.static main > .dirs,
+.static main > .final { animation: none; transform: none; }
+
 /* метка «уточнить» – видна только в черновике, перед запуском убрать */
 .todo {
   display: inline-block; margin-left: 6px; padding: 1px 6px; border-radius: 3px;
