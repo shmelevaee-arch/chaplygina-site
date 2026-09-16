@@ -33,8 +33,8 @@ function fitWordmark() {
 
 // 3. Появление: ждём шрифт, чтобы не было прыжка ширины, затем запускаем анимацию
 // 4. Фото подстраивается под текст, как у KAFAYA: губы целиком над текстом, текст на уровне нижней губы,
-//    лоб уходит за верх экрана. Координаты – доли кадра hero-tanya-2.jpg; кадр другой – поменять цифры
-const HERO_IMG = { ratio: 1672 / 941, anchor: 0.8, focusX: 0.36 };
+//    лоб уходит за верх экрана. Координаты – доли кадра hero-tanya-3.jpg; кадр другой – поменять цифры
+const HERO_IMG = { ratio: 1672 / 941, anchor: 0.77, focusX: 0.36, lipsLeft: 0.27 }; // lipsLeft – левый край губ
 function alignHeroPhoto() {
   const photo = document.querySelector('.hero__photo');
   const offer = document.querySelector('.hero__offer');
@@ -51,6 +51,18 @@ function alignHeroPhoto() {
   const y = Math.min(0, Math.max(bottom - h, target - HERO_IMG.anchor * h));
   const x = Math.min(0, Math.max(W - w, W * 0.5 - HERO_IMG.focusX * w));
   photo.style.backgroundSize = `${w}px ${h}px`;
+  // «Психолог и сексолог» – на губах: левый край колонки сдвигается к левому краю губ, но не ближе 32px к центральному тексту
+  const meta = document.querySelector('.hero__meta');
+  if (meta) {
+    meta.style.marginLeft = '';
+    if (matchMedia('(min-width: 769px)').matches) {
+      const lips = x + HERO_IMG.lipsLeft * w;
+      const offerLeft = offer.getBoundingClientRect().left - photo.getBoundingClientRect().left;
+      const start = meta.getBoundingClientRect().left - photo.getBoundingClientRect().left;
+      const shift = Math.max(0, Math.min(lips - start, offerLeft - 32 - meta.scrollWidth - start));
+      meta.style.marginLeft = `${shift}px`;
+    }
+  }
   photo.style.backgroundPosition = `${x}px ${y}px`;
 }
 

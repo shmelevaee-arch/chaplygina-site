@@ -337,7 +337,7 @@ button.course__media:hover { filter: brightness(1.12); }
 
 /* ===== Примерные фото со стока (Unsplash, бесплатная лицензия) – заменить кадрами фотосессии ===== */
 .hero__photo {
-  background: url("../assets/img/hero-tanya-2.jpg") center / cover no-repeat;
+  background: url("../assets/img/hero-tanya-3.jpg") center / cover no-repeat;
 }
 .hero__photo .hero__photo-note,
 .about__photo .ph__note,

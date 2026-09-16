@@ -62,7 +62,7 @@ a:hover .roll__inner, a:focus-visible .roll__inner { transform: translateY(-50%)
   margin-top: auto; /* как у референса: строка на ~48% высоты, над фамилией */
 }
 /* текст над фамилией мелкий, как у KAFAYA: 20px, интерлиньяж равен кеглю */
-.hero__meta { font-size: var(--fs-hero); font-weight: 500; line-height: 1; }
+.hero__meta { justify-self: start; width: max-content; font-size: var(--fs-hero); font-weight: 500; line-height: 1; }
 .hero__roles .reveal-line { display: block; }
 .hero__roles { justify-self: end; text-align: right; font-size: var(--fs-hero); font-weight: 500; line-height: 1; }
 
