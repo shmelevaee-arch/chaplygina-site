@@ -103,6 +103,7 @@
 }
 @media (max-width: 600px) {
   .about__statement { text-indent: 0; }
+  .about__label { position: static; display: block; margin-bottom: 16px; } /* без отступа первой строки подпись встаёт над абзацем */
   .about__principles { grid-template-columns: 1fr; }
   .docs__row { grid-template-columns: 44px minmax(0, 1fr) auto; row-gap: 4px; font-size: 15px; }
   .docs__org { grid-column: 2; font-size: 14px; }
@@ -210,6 +211,21 @@ button.course__media:hover { filter: brightness(1.12); }
 .faq__item[open] summary::after { transform: rotate(45deg); }
 .faq__item p { max-width: 62ch; padding-bottom: 28px; color: var(--c-text-muted); }
 
+/* ===== Бегущая строка перед финальным экраном ===== */
+.ticker { display: block; overflow: hidden; padding: clamp(32px, 4.5vw, 64px) 0 calc(clamp(32px, 4.5vw, 64px) + var(--panel-lift)); }
+.ticker__track { display: flex; width: max-content; animation: ticker 30s linear infinite; }
+.ticker__row {
+  display: flex; align-items: center; gap: clamp(20px, 2.6vw, 44px); padding-right: clamp(20px, 2.6vw, 44px);
+  font-size: clamp(40px, 7vw, 104px); font-weight: 700; line-height: 1;
+  text-transform: uppercase; letter-spacing: var(--track-xtight); white-space: nowrap;
+}
+.ticker__row .hollow { color: transparent; -webkit-text-stroke: 1px rgba(255, 255, 255, 0.5); }
+.ticker__row .dot { font-size: 0.34em; color: var(--c-red); }
+.ticker:hover .ticker__track { animation-duration: 12s; }
+@keyframes ticker { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .ticker__track { animation: none; } }
+.static .ticker__track { animation: none; }
+
 /* ===== 12 Написать: финальный экран, приём финального призыва ===== */
 .final { position: relative; isolation: isolate; overflow: hidden; min-height: max(90svh, 640px); display: grid; place-items: center; text-align: center; }
 .final__bg { position: absolute; inset: 0; z-index: -1; filter: saturate(1.1); }
@@ -229,7 +245,13 @@ button.course__media:hover { filter: brightness(1.12); }
 .footer__col { display: flex; flex-direction: column; gap: 8px; font-size: 20px; font-weight: 500; }
 .footer__col .eyebrow { margin-bottom: 8px; }
 .footer__col a:hover { color: var(--c-red); }
-.footer__wordmark { margin-top: clamp(64px, 9vw, 140px); }
+/* фамилия в подвале: тот же металлический перелив, что даёт режим «разница» на первом экране */
+.footer__wordmark {
+  margin-top: clamp(64px, 9vw, 140px);
+  mix-blend-mode: normal; color: transparent;
+  background-image: linear-gradient(100deg, #ffffff 0%, #b9cad4 22%, #ffffff 46%, #8fa3ad 68%, #ffffff 84%, #c7102e 118%);
+  -webkit-background-clip: text; background-clip: text;
+}
 .footer__bottom { margin-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; font-size: 14px; color: var(--c-text-muted); }
 
 /* ===== мобильное меню ===== */
@@ -268,7 +290,7 @@ button.course__media:hover { filter: brightness(1.12); }
 .hero__photo .hero__photo-note,
 .about__photo .ph__note,
 .final__bg .ph__note { display: none; }
-.about__photo { background: url("../assets/img/stock/about-suit.jpg") center 25% / cover no-repeat; }
+.about__photo { background: url("../assets/img/about-tanya.jpg") center 18% / cover no-repeat; } /* портрет из ChatGPT, заменить кадром фотосессии */
 .final__bg { overflow: hidden; background: #2a0a10; }
 .final__bg::before {
   content: ""; position: absolute; inset: -20px;

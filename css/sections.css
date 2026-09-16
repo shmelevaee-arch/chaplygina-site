@@ -49,13 +49,21 @@
    где один блок кончается и начинается следующий. */
 main > .section,
 main > .dirs,
+main > .ticker,
 main > .final,
 .footer {
   position: relative;
   margin-top: calc(-1 * var(--panel-lift));
   border-radius: var(--panel-radius) var(--panel-radius) 0 0;
-  background: var(--panel-bg, var(--c-bg));
-  box-shadow: 0 -24px 48px -16px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  background-color: var(--panel-bg, var(--c-bg));
+  box-shadow: 0 -32px 64px -20px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+/* красное свечение по верхней кромке листа – цвет приходит от фотографий */
+main > .section,
+main > .ticker,
+.footer {
+  background-image: radial-gradient(70% 260px at 50% 0, rgba(199, 16, 46, 0.16), rgba(199, 16, 46, 0) 72%);
+  background-repeat: no-repeat;
 }
 /* низ листа: обычный отступ плюс полоса, которую перекроет следующий лист */
 main > .section { padding-bottom: calc(var(--panel-lift) + clamp(56px, 7vw, 96px)); }
@@ -72,6 +80,7 @@ main > .section { padding-bottom: calc(var(--panel-lift) + clamp(56px, 7vw, 96px
 #gayd { --panel-bg: #181818; }
 #pochitat { --panel-bg: #101010; }
 #voprosy { --panel-bg: #181818; }
+.ticker { --panel-bg: #0d0d0d; }
 #napisat { --panel-bg: #2a0a10; } /* лист с фото */
 .footer { --panel-bg: var(--c-bg-deep); }
 
@@ -80,19 +89,22 @@ main > .section { padding-bottom: calc(var(--panel-lift) + clamp(56px, 7vw, 96px
   @media (prefers-reduced-motion: no-preference) {
     main > .section,
     main > .dirs,
+    main > .ticker,
     main > .final {
+      transform-origin: 50% 0;
       animation: panel-rise linear both;
       animation-timeline: view();
-      animation-range: entry 0% entry 40%;
+      animation-range: entry 0% entry 60%;
     }
     @keyframes panel-rise {
-      from { transform: translateY(40px); border-radius: calc(var(--panel-radius) * 1.5) calc(var(--panel-radius) * 1.5) 0 0; }
+      from { transform: translateY(110px) scale(0.94); border-radius: calc(var(--panel-radius) * 1.8) calc(var(--panel-radius) * 1.8) 0 0; }
       to { transform: none; }
     }
   }
 }
 .static main > .section,
 .static main > .dirs,
+.static main > .ticker,
 .static main > .final { animation: none; transform: none; }
 
 /* метка «уточнить» – видна только в черновике, перед запуском убрать */
