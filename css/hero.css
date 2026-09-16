@@ -41,9 +41,13 @@ a:hover .roll__inner, a:focus-visible .roll__inner { transform: translateY(-50%)
     radial-gradient(90% 80% at 22% 30%, #e3152f 0%, var(--c-red) 42%, var(--c-red-deep) 100%);
 }
 .hero__photo::before { content: none; } /* у референса фото чистое, без зерна */
-.hero__photo::after { /* переход фото в чёрный фон */
-  content: ""; position: absolute; inset: 0;
-  background: linear-gradient(to bottom, rgba(18,18,18,0) 0%, rgba(18,18,18,0) 52%, var(--c-bg) 100%); /* как «Gradient Overlay» референса: нижние 48% экрана */
+/* переход фото в чёрный фон: слой на самом первом экране, а не на фото – фото при загрузке увеличено до 110%,
+   и градиент на нём уезжал бы за нижний край, оставляя резкую полосу. Плавная кривая, к низу – чистый фон */
+.hero::after {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: linear-gradient(to bottom,
+    rgba(18,18,18,0) 0%, rgba(18,18,18,0) 45%, rgba(18,18,18,0.25) 60%, rgba(18,18,18,0.6) 75%,
+    rgba(18,18,18,0.88) 88%, var(--c-bg) 97%, var(--c-bg) 100%);
 }
 .hero__photo-note {
   position: absolute; right: var(--pad-x); top: calc(var(--header-h) + 16px);
@@ -118,6 +122,7 @@ a:hover .roll__inner, a:focus-visible .roll__inner { transform: translateY(-50%)
   .hero { padding-top: calc(var(--header-h) + 24px); padding-bottom: 84px; } /* место под нижнюю плашку */
   .hero { min-height: max(100svh, 720px); }
   .hero__photo { inset: 0 0 12% 0; }
+  .hero::after { background: linear-gradient(to bottom, rgba(18,18,18,0) 0%, rgba(18,18,18,0) 40%, rgba(18,18,18,0.35) 55%, rgba(18,18,18,0.75) 70%, var(--c-bg) 86%, var(--c-bg) 100%); } /* фото короче экрана – темнеет раньше */
   .hero__photo-note { left: var(--pad-x); right: auto; top: auto; bottom: 26%; }
   .hero__actions { display: none; } /* на телефоне кнопка живёт в нижней плашке */
   .hero__meta { font-size: 16px; }
