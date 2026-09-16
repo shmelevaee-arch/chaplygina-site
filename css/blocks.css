@@ -354,22 +354,27 @@ button.course__media:hover { filter: brightness(1.12); }
 .media__list { list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 40px 24px; }
 .media-card { display: flex; flex-direction: column; gap: 12px; }
 /* обложка, подпись, заголовок и описание соседних карточек в общих строках: заголовок в две строки не сдвигает описание только у себя */
-.media__list > li, .media__list .media-card { display: grid; grid-row: span 4; grid-template-rows: subgrid; row-gap: 12px; align-content: start; }
+.media__list > li, .media__list .media-card { display: grid; grid-row: span 5; grid-template-rows: subgrid; row-gap: 12px; align-content: start; }
 /* обложка 4:3: фото (--img) или слово на красном, как обложки «Почитать»; при наведении фото чуть увеличивается */
 .media-card__img { position: relative; display: block; aspect-ratio: 4 / 3; margin-bottom: 8px; overflow: hidden; border-radius: 4px; background: #1b1b1b; }
 .media-card__img::before {
   content: ""; position: absolute; inset: 0; background: center / cover no-repeat;
   transition: transform 0.9s var(--ease-kafaya), filter 0.6s var(--ease-out); filter: brightness(0.85);
 }
-.media-card__img--metro::before { background-image: url("../assets/img/media/metro.jpg"); }
 .media-card__img--word::before { background: radial-gradient(100% 90% at 30% 20%, #e3152f 0%, var(--c-red) 40%, var(--c-red-deep) 100%); filter: none; }
 .media-card__img--word > span {
   position: absolute; left: 16px; bottom: 14px; z-index: 1;
   font-size: clamp(32px, 3.4vw, 52px); font-weight: 700; line-height: 0.9; text-transform: uppercase; letter-spacing: var(--track-xtight);
 }
-.media-card__arrow { display: inline-block; font-size: 0.8em; transition: transform 0.5s var(--ease-out), color 0.3s var(--ease-out); }
+/* обложка-цитата: издание мелко сверху, фраза крупно снизу */
+.media-card__img--quote > em { position: absolute; left: 16px; top: 14px; z-index: 1; font-style: normal; font-size: 14px; font-weight: 600; letter-spacing: 0; text-transform: uppercase; }
+.media-card__img--quote > span { right: 16px; font-size: clamp(22px, 2vw, 30px); line-height: 1; }
+/* явная ссылка внизу карточки: что сделать */
+.media-card__cta { align-self: start; margin-top: 4px; font-size: var(--fs-body); }
+.media-card__cta::after { transition: transform 0.3s var(--ease-out), color 0.3s var(--ease-out); }
 a.media-card:hover .media-card__img::before { transform: scale(1.06); filter: brightness(1); }
-a.media-card:hover .media-card__arrow { transform: translate(3px, -3px); color: var(--c-red); }
+a.media-card:hover .media-card__cta::after { transform: translate(2px, -2px); color: var(--c-red); }
+a.media-card:hover .card-title { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
 @media (max-width: 900px) { .media__list { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 600px) { .media__list { grid-template-columns: 1fr; } }
 
