@@ -33,8 +33,8 @@ function fitWordmark() {
 
 // 3. Появление: ждём шрифт, чтобы не было прыжка ширины, затем запускаем анимацию
 // 4. Фото подстраивается под текст: верх оффера всегда на верхней губе, а не на носу.
-//    Координаты губ – доли кадра hero-tanya.jpg; кадр другой – поменять цифры
-const HERO_IMG = { ratio: 1672 / 941, lipsTop: 0.68, focusX: 0.4 };
+//    Координаты губ – доли кадра hero-tanya-2.jpg; кадр другой – поменять цифры
+const HERO_IMG = { ratio: 1672 / 941, lipsTop: 0.69, focusX: 0.38 };
 function alignHeroPhoto() {
   const photo = document.querySelector('.hero__photo');
   const offer = document.querySelector('.hero__offer');
