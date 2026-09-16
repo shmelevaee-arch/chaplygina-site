@@ -32,9 +32,9 @@ function fitWordmark() {
 }
 
 // 3. Появление: ждём шрифт, чтобы не было прыжка ширины, затем запускаем анимацию
-// 4. Фото подстраивается под текст: верх оффера всегда на верхней губе, а не на носу.
-//    Координаты губ – доли кадра hero-tanya-2.jpg; кадр другой – поменять цифры
-const HERO_IMG = { ratio: 1672 / 941, lipsTop: 0.69, focusX: 0.38 };
+// 4. Фото подстраивается под текст, как у KAFAYA: губы целиком над текстом, текст на уровне нижней губы,
+//    лоб уходит за верх экрана. Координаты – доли кадра hero-tanya-2.jpg; кадр другой – поменять цифры
+const HERO_IMG = { ratio: 1672 / 941, anchor: 0.8, focusX: 0.36 };
 function alignHeroPhoto() {
   const photo = document.querySelector('.hero__photo');
   const offer = document.querySelector('.hero__offer');
@@ -44,10 +44,11 @@ function alignHeroPhoto() {
   let target = 0;
   for (let el = offer; el && el !== photo.offsetParent; el = el.offsetParent) target += el.offsetTop;
   target -= photo.offsetTop;
-  // высота кадра: не меньше «cover» и такая, чтобы губы встали на target и кадр всё ещё закрывал блок
-  const h = Math.max(H, W / HERO_IMG.ratio, target / HERO_IMG.lipsTop, (H - target) / (1 - HERO_IMG.lipsTop));
+  // низ кадра достаточно довести до 90% высоты – ниже всё равно тёмный градиент
+  const bottom = H * 0.9;
+  const h = Math.max(H, W / HERO_IMG.ratio, target / HERO_IMG.anchor, (bottom - target) / (1 - HERO_IMG.anchor));
   const w = h * HERO_IMG.ratio;
-  const y = Math.min(0, Math.max(H - h, target - HERO_IMG.lipsTop * h));
+  const y = Math.min(0, Math.max(bottom - h, target - HERO_IMG.anchor * h));
   const x = Math.min(0, Math.max(W - w, W * 0.5 - HERO_IMG.focusX * w));
   photo.style.backgroundSize = `${w}px ${h}px`;
   photo.style.backgroundPosition = `${x}px ${y}px`;
