@@ -14,14 +14,18 @@ document.querySelectorAll('[data-roll]').forEach((el) => {
 });
 
 // 2. Фамилия во всю ширину: меряем при 100px и масштабируем под контейнер.
-//    Если строк несколько, кегль общий – по самой длинной строке
+//    Если строк несколько, кегль общий – по самой длинной строке.
+//    data-fit="1.1" – фамилия шире колонки контента на 10%, поровну в обе стороны, но не ближе 16px к краю окна
 function fitWordmark() {
   document.querySelectorAll('[data-fit]').forEach((wm) => {
     const box = getComputedStyle(wm.parentElement);
-    const target = wm.parentElement.clientWidth - parseFloat(box.paddingLeft) - parseFloat(box.paddingRight);
+    const column = wm.parentElement.clientWidth - parseFloat(box.paddingLeft) - parseFloat(box.paddingRight);
+    const scale = parseFloat(wm.dataset.fit) || 1;
+    const target = Math.min(column * scale, document.documentElement.clientWidth - 32);
     wm.style.fontSize = '100px';
     const widest = Math.max(...[...wm.querySelectorAll('.wordmark__line > span')].map((s) => s.getBoundingClientRect().width));
     wm.style.fontSize = `${(100 * target) / widest}px`;
+    wm.style.marginLeft = target > column ? `${-(target - column) / 2}px` : '';
   });
 }
 
