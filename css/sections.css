@@ -69,7 +69,7 @@ main > .ticker,
 main > .section { padding-bottom: calc(var(--panel-lift) + clamp(56px, 7vw, 96px)); }
 
 /* оттенки чередуются: светлее – темнее, разница небольшая, чтобы не рябило */
-#podhod { --panel-bg: #121212; }
+#podhod { --panel-bg: #121212; margin-top: 0; } /* первый лист не наезжает на первый экран – фамилия стоит в край */
 #obrazovanie { --panel-bg: #181818; }
 #media { --panel-bg: #101010; }
 #napravleniya { --panel-bg: #0d0204; } /* лист с фото */

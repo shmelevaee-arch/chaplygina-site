@@ -26,9 +26,9 @@ a:hover .roll__inner, a:focus-visible .roll__inner { transform: translateY(-50%)
 /* ---------- первый экран ---------- */
 .hero {
   position: relative; isolation: isolate;
-  min-height: max(calc(100svh + 80px), 800px); /* чуть выше окна: фамилия целиком внутри экрана с фото, без шва */
-  /* снизу свободная полоса под наезд следующего листа, иначе он срезает фамилию */
-  padding: calc(var(--header-h) + 6vh) var(--gutter) calc(24px + var(--panel-lift));
+  min-height: max(100svh, 700px); /* ровно окно: фамилия стоит в нижний край экрана */
+  /* фамилия стоит вплотную к нижнему краю экрана; «Подход» на первый экран не наезжает (#podhod в sections.css) */
+  padding: calc(var(--header-h) + 6vh) var(--gutter) 0;
   display: flex; flex-direction: column;
   overflow: hidden;
 }
@@ -114,7 +114,7 @@ a:hover .roll__inner, a:focus-visible .roll__inner { transform: translateY(-50%)
   .header__burger { display: grid; grid-template-columns: repeat(2, 6px); gap: 4px; place-content: center; }
   .header__burger i { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
 
-  .hero { padding-top: calc(var(--header-h) + 24px); padding-bottom: calc(84px + var(--panel-lift)); } /* место под нижнюю плашку и наезд листа */
+  .hero { padding-top: calc(var(--header-h) + 24px); padding-bottom: 84px; } /* место под нижнюю плашку */
   .hero { min-height: max(100svh, 720px); }
   .hero__photo { inset: 0 0 12% 0; }
   .hero__photo-note { left: var(--pad-x); right: auto; top: auto; bottom: 26%; }

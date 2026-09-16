@@ -26,13 +26,32 @@ function fitWordmark() {
 }
 
 // 3. Появление: ждём шрифт, чтобы не было прыжка ширины, затем запускаем анимацию
+// 4. Фото подстраивается под текст: верх оффера всегда на верхней губе, а не на носу.
+//    Координаты губ – доли кадра hero-tanya.jpg; кадр другой – поменять цифры
+const HERO_IMG = { ratio: 1672 / 941, lipsTop: 0.68, focusX: 0.4 };
+function alignHeroPhoto() {
+  const photo = document.querySelector('.hero__photo');
+  const offer = document.querySelector('.hero__offer');
+  if (!photo || !offer) return;
+  const W = photo.clientWidth, H = photo.clientHeight;
+  const target = offer.getBoundingClientRect().top - photo.getBoundingClientRect().top;
+  // высота кадра: не меньше «cover» и такая, чтобы губы встали на target и кадр всё ещё закрывал блок
+  const h = Math.max(H, W / HERO_IMG.ratio, target / HERO_IMG.lipsTop, (H - target) / (1 - HERO_IMG.lipsTop));
+  const w = h * HERO_IMG.ratio;
+  const y = Math.min(0, Math.max(H - h, target - HERO_IMG.lipsTop * h));
+  const x = Math.min(0, Math.max(W - w, W * 0.5 - HERO_IMG.focusX * w));
+  photo.style.backgroundSize = `${w}px ${h}px`;
+  photo.style.backgroundPosition = `${x}px ${y}px`;
+}
+
 document.fonts.ready.then(() => {
   fitWordmark();
+  alignHeroPhoto();
   requestAnimationFrame(() => document.documentElement.classList.add('is-ready'));
 });
 
 let resizeTimer;
 window.addEventListener('resize', () => {
   clearTimeout(resizeTimer);
-  resizeTimer = setTimeout(fitWordmark, 100);
+  resizeTimer = setTimeout(() => { fitWordmark(); alignHeroPhoto(); }, 100);
 });
