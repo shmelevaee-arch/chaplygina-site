@@ -74,7 +74,9 @@ main > .ticker,
 main > .section { padding-bottom: calc(var(--panel-lift) + clamp(56px, 7vw, 96px)); }
 
 /* оттенки чередуются: светлее – темнее, разница небольшая, чтобы не рябило */
-#podhod { --panel-bg: #121212; margin-top: 0; } /* первый лист не наезжает на первый экран – фамилия стоит в край */
+/* «Подход» – не лист: как у KAFAYA, фото первого экрана уходит в тёмный градиент без шва – без скругления, тени, кромки, свечения и въезда */
+#podhod { --panel-bg: #121212; margin-top: 0; border-radius: 0; box-shadow: none; background-image: none; }
+@supports (animation-timeline: view()) { main > #podhod { animation: none; transform: none; } }
 #obrazovanie { --panel-bg: #181818; }
 #napravleniya { --panel-bg: #0d0204; } /* лист с фото */
 #istorii { --panel-bg: #181818; }
