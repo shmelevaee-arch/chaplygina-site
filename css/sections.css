@@ -88,7 +88,9 @@ main > .section { padding-bottom: calc(var(--panel-lift) + clamp(56px, 7vw, 96px
 #pochitat { --panel-bg: #181818; }
 #voprosy { --panel-bg: #101010; }
 .ticker { --panel-bg: #0d0d0d; }
-#napisat { --panel-bg: #2a0a10; } /* лист с фото */
+/* финальный экран не лист: бегущая строка плавно уходит в фото через тёмный градиент, без кромки и тени */
+#napisat { --panel-bg: #0d0d0d; margin-top: 0; border-radius: 0; box-shadow: none; }
+@supports (animation-timeline: view()) { main > #napisat { animation: none; transform: none; } }
 /* подвал как у KAFAYA – ровный чёрный, без листа: без скругления, тени и свечения */
 .footer { --panel-bg: var(--c-bg); margin-top: 0; border-radius: 0; box-shadow: none; background-image: none; }
 

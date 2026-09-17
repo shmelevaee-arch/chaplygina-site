@@ -257,7 +257,7 @@ button.course__media:hover { filter: brightness(1.12); }
 .faq__item p { max-width: 62ch; padding-bottom: 28px; color: var(--c-text-muted); }
 
 /* ===== Бегущая строка перед финальным экраном ===== */
-.ticker { display: block; overflow: hidden; padding: clamp(32px, 4.5vw, 64px) 0 calc(clamp(32px, 4.5vw, 64px) + var(--panel-lift)); }
+.ticker { display: block; overflow: hidden; padding: clamp(32px, 4.5vw, 64px) 0; }
 .ticker__track { display: flex; width: max-content; animation: ticker 30s linear infinite; }
 .ticker__row {
   display: flex; align-items: center; gap: clamp(20px, 2.6vw, 44px); padding-right: clamp(20px, 2.6vw, 44px);
@@ -275,7 +275,10 @@ button.course__media:hover { filter: brightness(1.12); }
 /* ===== 12 Написать: финальный экран, приём финального призыва ===== */
 .final { position: relative; isolation: isolate; overflow: hidden; min-height: max(90svh, 640px); display: grid; place-items: center; text-align: center; }
 .final__bg { position: absolute; inset: 0; z-index: -1; filter: saturate(1.1); }
-.final__bg::after { content: ""; position: absolute; inset: 0; background: radial-gradient(60% 60% at 50% 50%, rgba(0,0,0,0.1), rgba(0,0,0,0.55)); }
+.final__bg::after { content: ""; position: absolute; inset: 0;
+  background:
+    linear-gradient(to bottom, #0d0d0d 0%, rgba(13,13,13,0.85) 8%, rgba(13,13,13,0.4) 22%, rgba(13,13,13,0) 38%), /* верх фото тает в цвет бегущей строки */
+    radial-gradient(60% 60% at 50% 50%, rgba(0,0,0,0.1), rgba(0,0,0,0.55)); }
 .final__bg .ph__note { z-index: 1; left: auto; right: var(--pad-x); bottom: 20px; }
 .final__inner { padding: 64px var(--pad-x); max-width: 980px; } /* подвал не наезжает на финальный экран */
 .final__title { font-size: clamp(26px, 2.6vw, 40px); font-weight: 600; line-height: 1; letter-spacing: -0.03em; text-transform: uppercase; }
