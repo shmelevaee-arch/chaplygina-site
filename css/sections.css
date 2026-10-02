@@ -85,8 +85,9 @@ main > .section { padding-bottom: calc(var(--panel-lift) + clamp(56px, 7vw, 96px
 #ceny { --panel-bg: #101010; }
 #kursy { --panel-bg: #181818; }
 #gayd { --panel-bg: #101010; }
-#pochitat { --panel-bg: #181818; }
-#voprosy { --panel-bg: #101010; }
+#pokupki { --panel-bg: #181818; }
+#pochitat { --panel-bg: #101010; }
+#voprosy { --panel-bg: #181818; }
 .ticker { --panel-bg: #0d0d0d; }
 /* финальный экран не лист: бегущая строка плавно уходит в фото через тёмный градиент, без кромки и тени */
 #napisat { --panel-bg: #0d0d0d; margin-top: 0; border-radius: 0; box-shadow: none; }

@@ -374,3 +374,7 @@ a.media-card:hover .card-title { text-decoration: underline; text-decoration-thi
 
 /* подвал на телефоне: колонки ссылок одна под другой – длинная ссылка переносилась и ряды расходились */
 @media (max-width: 600px) { .footer__top { grid-template-columns: 1fr; } }
+
+/* «Что я советую»: партнёрские ссылки с промокодом */
+.shop__note { margin-top: clamp(28px, 3vw, 40px); max-width: 44ch; }
+.shop__note b { color: var(--c-text); font-weight: 600; }
